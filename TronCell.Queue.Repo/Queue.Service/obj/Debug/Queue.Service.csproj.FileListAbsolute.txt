@@ -1,3 +1,0 @@
-D:\Git\TronCell\Queue\TronCell.Queue.Repo\Queue.Service\obj\Debug\Queue.Service.csprojResolveAssemblyReference.cache
-D:\Git\TronCell\Queue\TronCell.Queue.Repo\Queue.Service\obj\Debug\Retail.Service.dll
-D:\Git\TronCell\Queue\TronCell.Queue.Repo\Queue.Service\obj\Debug\Retail.Service.pdb
