@@ -8,10 +8,8 @@ namespace TronCell.Queue.Web.Controllers
     {
         public ActionResult Index()
         {
-            var fitting = ServiceLocator.Current.GetInstance<RetailDataContext>();
-            var test = fitting.Fittings.FirstOrDefault(p => p.FittingRoom.RoomName.Contains("002"));
-            var name = test.FittingRoom.RoomName;
-            ViewBag.RoomName = name;
+            var fitting = ServiceLocator.Current.GetInstance<QueueDataContext>();
+            ViewBag.RoomName = "I love you";
             return View();
         }
 

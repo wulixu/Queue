@@ -5,6 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TronCell.Queue.Web.DAL;
 using TronCell.Queue.Web;
+using TronCell.Queue.Web.Models;
 
 namespace TronCell.Queue.Web
 {
@@ -17,7 +18,7 @@ namespace TronCell.Queue.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<RetailDataContext>(new RetailInitializer());
+            Database.SetInitializer<ApplicationDbContext>(new QueueInitializer());
         }
     }
 }

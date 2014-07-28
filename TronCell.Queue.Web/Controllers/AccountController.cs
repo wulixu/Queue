@@ -12,6 +12,7 @@ using Microsoft.Owin.Security;
 using Owin;
 using TronCell.Queue.Web;
 using TronCell.Queue.Web.Models;
+using Microsoft.Practices.ServiceLocation;
 
 namespace TronCell.Queue.Web.Controllers
 {
@@ -62,6 +63,12 @@ namespace TronCell.Queue.Web.Controllers
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
+                    var dbContext = ServiceLocator.Current.GetInstance<ApplicationDbContext>();
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
+                    if(userManager.GetRoles(user.Id).Contains("Admin"))
+                    {
+                        //RedirectToLocal();
+                    }
                     return RedirectToLocal(returnUrl);
                 }
                 else

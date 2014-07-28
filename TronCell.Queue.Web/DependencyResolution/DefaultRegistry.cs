@@ -16,13 +16,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Microsoft.Owin.Security.DataHandler.Serializer;
-using Queue.Entities.Models;
-using Queue.Repository.Services;
-using Repository.Pattern.DataContext;
-using Repository.Pattern.Ef6;
-using Repository.Pattern.Ef6.Factories;
-using Repository.Pattern.Repositories;
-using Repository.Pattern.UnitOfWork;
 using TronCell.Queue.Web;
 using TronCell.Queue.Web.Models;
 
@@ -39,17 +32,17 @@ namespace TronCell.Queue.Web.DependencyResolution {
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
                 });
-            var db = new RetailDataContext("DefaultConnection");
+            var db = new QueueDataContext("DefaultConnection");
             //For<IDataContextAsync>().Singleton().Use(db);
-            For<RetailDataContext>().Singleton().Use(db);
-            For<IRepositoryProvider>().Use<RepositoryProvider>().Ctor<RepositoryFactories>("repositoryFactories").Is(new RepositoryFactories());
+            For<QueueDataContext>().Singleton().Use(db);
+            //For<IRepositoryProvider>().Use<RepositoryProvider>().Ctor<RepositoryFactories>("repositoryFactories").Is(new RepositoryFactories());
             //For<IExample>().Use<Example>();
             For<Microsoft.AspNet.Identity.IUserStore<ApplicationUser>>().Use<Microsoft.AspNet.Identity.EntityFramework.UserStore<ApplicationUser>>();
             For<System.Data.Entity.DbContext>().Use(() => new ApplicationDbContext());
-            For<IUnitOfWorkAsync>().Use<UnitOfWork>();
+            //For<IUnitOfWorkAsync>().Use<UnitOfWork>();
 
-            For<IRepositoryAsync<Fitting>>().Use<Repository<Fitting>>();
-            For<IFittingService>().Use<FittingService>();
+            //For<IRepositoryAsync<Fitting>>().Use<Repository<Fitting>>();
+            //For<IFittingService>().Use<FittingService>();
         }
 
         #endregion

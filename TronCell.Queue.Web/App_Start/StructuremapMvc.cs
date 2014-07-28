@@ -20,7 +20,6 @@ using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using StructureMap;
 using TronCell.Queue.Web;
 using TronCell.Queue.Web.DependencyResolution;
-using TronCell.Queue.Web.DependencyResolution;
 using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(StructuremapMvc), "Start")]
