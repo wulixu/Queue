@@ -1,0 +1,60 @@
+﻿@model TronCell.Queue.Web.Models.ApplicationUser
+@{
+    ViewBag.Title = "用户信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>用户个人信息</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            用户名
+        </dt>
+        <dd>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "login_kw" })
+            @Html.ValidationMessageFor(model => model.UserName)
+        </dd>
+
+        <dt>
+           真实姓名
+        </dt>
+        <dd>
+            @Html.TextBoxFor(model => model.TrueName, new { @class = "login_kw" })
+            @Html.ValidationMessageFor(model => model.TrueName)
+        </dd>
+
+        <dt>
+         手机号码   
+        </dt>
+        <dd>
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "login_kw" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            身份证号码
+        </dt>
+        <dd>
+            @Html.TextBoxFor(model => model.IDCard, new { @class = "login_kw" })
+            @Html.ValidationMessageFor(model => model.IDCard)
+        </dd>
+
+        <dt>
+            公司名称
+        </dt>
+        <dd>
+            @Html.TextBoxFor(model => model.CompanyName, new { @class = "login_kw" })
+            @Html.ValidationMessageFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            车牌号
+        </dt>
+        <dd>
+            @Html.TextBoxFor(model => model.CarNum, new { @class = "login_kw" })
+            @Html.ValidationMessageFor(model => model.CarNum)
+        </dd>
+    </dl>
+</div>
+@Html.ActionLink("返回首页", "Index", "Home")

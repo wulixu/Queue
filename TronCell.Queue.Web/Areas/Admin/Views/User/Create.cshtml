@@ -1,0 +1,139 @@
+﻿@model TronCell.Queue.Web.Models.ApplicationUser
+@{
+    ViewBag.Title = "添加用户";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadRole();
+        $(".create_role_list").toggle();
+        $(".create_role").click(function () {
+            $(".create_role_list").toggle();
+
+        });
+        $(".create_role_list li").click(function () {
+            var crVal = $(this).text();
+            $(".login_role").val(crVal);
+            $("#Role").val(crVal);
+        });
+    });
+
+    function loadRole() {
+        var role = "@ViewBag.role";
+        var roleArr = role.split(",");
+        var strHtml = "";
+        for (i = 0; i < roleArr.length; i++) {
+            strHtml += "<li id='" + roleArr[i] + "'>" + roleArr[i] + "</li>";
+        }
+        $(".create_role_list").html(strHtml);
+    }
+</script>
+<h2>添加新用户</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.Hidden("Role")
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                用户名
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                真实姓名
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrueName)
+                @Html.ValidationMessageFor(model => model.TrueName)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                用户角色
+            </div>
+            <div class="col-md-10">
+                <div class="create_role">
+                    <input class="login_role" type="text" name="roleName" value="请选择" />
+                    <ul class="create_role_list">
+                        <li>供应商</li>
+                        <li>买家</li>
+                    </ul>
+                </div>
+                @Html.ValidationMessageFor(model => model.Roles)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                密码
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PasswordHash)
+                @Html.ValidationMessageFor(model => model.PasswordHash)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                手机号码
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber)
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                身份证号码
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IDCard)
+                @Html.ValidationMessageFor(model => model.IDCard)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                公司名称
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyName)
+                @Html.ValidationMessageFor(model => model.CompanyName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                车牌号
+            </div>
+            @*@Html.LabelFor(model => model.CarNum, new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CarNum)
+                @Html.ValidationMessageFor(model => model.CarNum)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="确认添加" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

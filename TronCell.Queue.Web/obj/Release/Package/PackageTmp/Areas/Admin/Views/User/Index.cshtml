@@ -1,0 +1,73 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@model PagedList<TronCell.Queue.Web.Models.ApplicationUser>
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentTab = "UserTab";
+}
+@Html.Partial("AdminTabView")
+<p>
+    @Html.ActionLink("添加新用户", "Create", new { @class = "btn btn-primary btn-lg" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            用户名
+        </th>
+        <th>
+            真实姓名
+        </th>
+        <th>
+            手机号码
+        </th>
+        <th>
+            身份证号
+        </th>
+        <th>
+            公司名称
+        </th>
+        <th>
+            车牌号码
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrueName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDCard)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarNum)
+            </td>
+
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.Id }) |
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions { HttpMethod = "POST", Confirm = "确定要删除该用户信息吗?", OnSuccess = "doSuccessDelete();" })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
+<script type="text/javascript">
+    function doSuccessDelete()
+    {
+        location.reload();
+    }
+</script>

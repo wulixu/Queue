@@ -1,0 +1,99 @@
+﻿@model TronCell.Queue.Web.Models.QueueCall
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QueueCall</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Operation.IDCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Operation.IDCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QueueUser.IDCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueueUser.IDCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReceiveArea.AreaName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReceiveArea.AreaName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QueueNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueueNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.QueueCallId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

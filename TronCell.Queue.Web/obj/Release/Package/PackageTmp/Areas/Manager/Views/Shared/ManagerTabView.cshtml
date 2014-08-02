@@ -1,0 +1,23 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $("#@ViewBag.CurrentTab").addClass("hover");
+        //$(".main_menu ul li").click(function () {
+        //    var index = $(".main_menu ul li").index(this);
+        //$(this).addClass("hover").siblings().removeClass("hover");
+        //$(".showId").eq(index).show().siblings().hide();
+
+        $("#QueueTab").click(function () {
+            window.location.href = "/Manager/QueueCall/index";
+        });
+        $("#HistoryTab").click(function () {
+            window.location.href = "/Manager/HistoryData/index";
+        });
+        //});
+    });
+</script>
+<div class="main_menu">
+    <ul>
+        <li id="QueueTab">排队管理<br /><span style='font-size:10px;color:#999;'>Queue Control</span></li>
+        <li id="HistoryTab">历史报表<br /><span style='font-size:10px;color:#999;'>History Report</span></li>
+    </ul>
+</div>

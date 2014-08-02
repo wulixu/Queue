@@ -66,15 +66,6 @@ namespace TronCell.Queue.Web.Areas.Receiver.Controllers
         {
             return View();
         }
-        public string ComparisonStr(string codeStr)
-        {
-            DateTime today = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
-            DateTime tomorrow = today.AddDays(1);
-            var querylist = (from p in db.Queues
-                             where p.QueueNum != null && p.CreateTime >= today && p.CreateTime < tomorrow && p.QueueUser.IDCard==codeStr&& p.State == TronCell.Queue.Web.Models.ProcessStatus.Processing && p.State != TronCell.Queue.Web.Models.ProcessStatus.Processed && p.State != TronCell.Queue.Web.Models.ProcessStatus.NoQueueNumber && p.State != TronCell.Queue.Web.Models.ProcessStatus.LazyProcess && p.Deleted == false
-                             select new { p.QueueCallId, p.QueueNum }).ToList();
-            return null;
-        }
         //处理是否收料
         private void PassQueue(DateTime today, DateTime tomorrow, string methodName, int queueCallId)
         {

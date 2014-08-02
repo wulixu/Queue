@@ -1,0 +1,28 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $("#@ViewBag.CurrentTab").addClass("hover");
+        //$(".main_menu ul li").click(function () {
+        //    var index = $(".main_menu ul li").index(this);
+            //$(this).addClass("hover").siblings().removeClass("hover");
+            //$(".showId").eq(index).show().siblings().hide();
+
+            $("#UserTab").click(function () {
+                window.location.href = "/admin/user/index";
+            });
+            $("#WindowTab").click(function () {
+                window.location.href = "/admin/ReceiveArea/index";
+            });
+
+            $("#SystemSettingTab").click(function () {
+                window.location.href = "/admin/Systemsetting/index";
+            });
+        //});
+    });
+</script>
+<div class="main_menu">
+    <ul>
+        <li id="UserTab">用户管理<br /><span style='font-size:10px;color:#999;'>User Control</span></li>
+        <li id="WindowTab">窗口管理<br /><span style='font-size:10px;color:#999;'>Window Control</span></li>
+        <li id="SystemSettingTab">系统设置<br /><span style='font-size:10px;color:#999;'>System setting</span></li>
+    </ul>
+</div>
