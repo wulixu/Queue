@@ -38,13 +38,12 @@ namespace TronCell.Queue.Web.Models
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "用户名")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "密码")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -53,21 +52,26 @@ namespace TronCell.Queue.Web.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
+        [Display(Name="用户名")]
+        public string UserName { get; set; }
+        [Display(Name="真实姓名")]
+        public string TrueName { get; set; }
+        [Required(ErrorMessage = "手机号码不能为空")]
+        [RegularExpression(@"1[0-9]{10}", ErrorMessage = "手机号码无效")]
+        [Display(Name = "电话号码")]
+        public string PhoneNumber { get; set; }
+        [Required(ErrorMessage="身份证号码不能为空")]
+        [Display(Name="身份证号")]
+        public string IDCard { get; set; }
+        [Display(Name="公司名")]
+        public string CompanyName { get; set; }
+        [Display(Name="车牌号")]
+        public string CarNum { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "密码")]
         public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel

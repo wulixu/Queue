@@ -24,7 +24,7 @@ namespace TronCell.Queue.Web.DAL
             IdentityResult roleResult;
 
             // Check to see if Role Exists, if not create it
-            
+
 
             if (!RoleManager.RoleExists(roleManName))
             {
@@ -51,16 +51,24 @@ namespace TronCell.Queue.Web.DAL
 
             var receiveArea = new List<ReceiveArea>()
             {
-                new ReceiveArea() { AreaName = "A001窗口", Description = "A001", Category="All"},
-                new ReceiveArea() { AreaName = "A002窗口", Description = "A002",Category="All"}
+                new ReceiveArea() { AreaName = "A001窗口", Description = "A001", Category="All",CreateTime=DateTime.Now},
+                new ReceiveArea() { AreaName = "A002窗口", Description = "A002",Category="All",CreateTime=DateTime.Now}
             };
             receiveArea.ForEach(area => context.ReceiveArea.Add(area));
             context.SaveChanges();
 
 
 
-            var user = new ApplicationUser() { UserName = "admin", Email = "wulixu@troncell.com",
-                                                CreatedTime = DateTime.Now, CarNum="苏BV909U", IDCard="360428198305141000", CompanyName="无锡创思感知"};
+            var user = new ApplicationUser()
+            {
+                UserName = "admin",
+                TrueName="吴礼旭",
+                Email = "wulixu@troncell.com",
+                CreatedTime = DateTime.Now,
+                CarNum = "苏BV909U",
+                IDCard = "360428198305141000",
+                CompanyName = "无锡创思感知"
+            };
             IdentityResult result = UserManager.Create(user, "123456");
 
 

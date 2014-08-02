@@ -13,7 +13,7 @@ namespace TronCell.Queue.Web.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(TronCell.Queue.Web.Models.ApplicationDbContext context)
@@ -59,8 +59,8 @@ namespace TronCell.Queue.Web.Migrations
 
             var receiveArea = new List<ReceiveArea>()
             {
-                new ReceiveArea() { AreaName = "A001¥∞ø⁄", Description = "A001", Category="All"},
-                new ReceiveArea() { AreaName = "A002¥∞ø⁄", Description = "A002",Category="All"}
+                new ReceiveArea() { AreaName = "A001¥∞ø⁄", Description = "A001", Category="All",CreateTime=DateTime.Now},
+                new ReceiveArea() { AreaName = "A002¥∞ø⁄", Description = "A002", Category="All",CreateTime=DateTime.Now}
             };
             receiveArea.ForEach(area => context.ReceiveArea.Add(area));
             context.SaveChanges();
@@ -70,6 +70,7 @@ namespace TronCell.Queue.Web.Migrations
             var user = new ApplicationUser()
             {
                 UserName = "admin",
+                TrueName="Œ‚¿Ò–Ò",
                 Email = "wulixu@troncell.com",
                 CreatedTime = DateTime.Now,
                 CarNum = "À’BV909U",

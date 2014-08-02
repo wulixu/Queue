@@ -93,6 +93,9 @@
     <Reference Include="Microsoft.Spatial">
       <HintPath>..\packages\Microsoft.Spatial.6.4.0\lib\portable-net40+sl5+wp8+win8\Microsoft.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="MvcPager">
+      <HintPath>..\packages\MvcPager.MVC4.CN.2.0.0.1\lib\MvcPager.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -223,6 +226,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\BaseAPIController.cs" />
+    <Compile Include="API\InQueueReservationsController.cs" />
+    <Compile Include="API\QueueNumController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -231,6 +237,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ReceiveAreaController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemsettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Manager\Controllers\HistoryDataController.cs" />
+    <Compile Include="Areas\Manager\Controllers\QueueCallController.cs" />
+    <Compile Include="Areas\Manager\ManagerAreaRegistration.cs" />
+    <Compile Include="Areas\Receiver\Controllers\ChoiceAreaController.cs" />
+    <Compile Include="Areas\Receiver\Controllers\HistoryDataController.cs" />
+    <Compile Include="Areas\Receiver\ReceiverAreaRegistration.cs" />
+    <Compile Include="Areas\Supplier\SupplierAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\RetailInitializer.cs" />
@@ -241,9 +258,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407281042182_v1.cs" />
-    <Compile Include="Migrations\201407281042182_v1.Designer.cs">
-      <DependentUpon>201407281042182_v1.cs</DependentUpon>
+    <Compile Include="Helper\EnumCOM.cs" />
+    <Compile Include="Helper\SendMSS.cs" />
+    <Compile Include="Migrations\201408011604029_v1.0.cs" />
+    <Compile Include="Migrations\201408011604029_v1.0.Designer.cs">
+      <DependentUpon>201408011604029_v1.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -266,6 +285,27 @@
     <Content Include="Content\First.min.css">
       <DependentUpon>First.css</DependentUpon>
     </Content>
+    <Content Include="Content\images\admin_setting_icon.jpg" />
+    <Content Include="Content\images\buyer-chart_data.jpg" />
+    <Content Include="Content\images\buyer-chart_pie.jpg" />
+    <Content Include="Content\images\buyer-chart_plotting.jpg" />
+    <Content Include="Content\images\buyer-chart_rep.jpg" />
+    <Content Include="Content\images\buyer_auth_03.jpg" />
+    <Content Include="Content\images\buyer_auth_07.jpg" />
+    <Content Include="Content\images\buyer_auth_book.jpg" />
+    <Content Include="Content\images\email_icon.jpg" />
+    <Content Include="Content\images\hover.jpg" />
+    <Content Include="Content\images\login_ad.jpg" />
+    <Content Include="Content\images\login_btn.jpg" />
+    <Content Include="Content\images\login_btn_hover.jpg" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logout_icon.jpg" />
+    <Content Include="Content\images\mainmenu_bg.jpg" />
+    <Content Include="Content\images\message_icon.jpg" />
+    <Content Include="Content\images\sing_icon.jpg" />
+    <Content Include="Content\images\Supplier_rili.jpg" />
+    <Content Include="Content\images\time_icon.jpg" />
+    <Content Include="Content\images\top_bg.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -275,10 +315,36 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Manager\Views\web.config" />
+    <Content Include="Areas\Receiver\Views\web.config" />
+    <Content Include="Areas\Supplier\Views\web.config" />
+    <Content Include="Areas\Admin\Views\ReceiveArea\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ReceiveArea\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ReceiveArea\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ReceiveArea\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ReceiveArea\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\AdminTabView.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Systemsetting\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\QueueCall\Create.cshtml" />
+    <Content Include="Areas\Manager\Views\QueueCall\Delete.cshtml" />
+    <Content Include="Areas\Manager\Views\QueueCall\Details.cshtml" />
+    <Content Include="Areas\Manager\Views\QueueCall\Edit.cshtml" />
+    <Content Include="Areas\Manager\Views\QueueCall\Index.cshtml" />
+    <Content Include="Areas\Manager\Views\Shared\ManagerTabView.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\Index.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\Details.cshtml" />
+    <Content Include="Areas\Receiver\Views\HistoryData\Index.cshtml" />
+    <Content Include="Areas\Receiver\Views\Shared\ReceiverTabView.cshtml" />
+    <Content Include="Areas\Manager\Views\HistoryData\Index.cshtml" />
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
     <Content Include="Content\First.less" />
+    <None Include="Properties\PublishProfiles\QueueWeb.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -286,6 +352,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -296,6 +364,28 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="style\images\admin_setting_icon.jpg" />
+    <Content Include="style\images\buyer-chart_data.jpg" />
+    <Content Include="style\images\buyer-chart_pie.jpg" />
+    <Content Include="style\images\buyer-chart_plotting.jpg" />
+    <Content Include="style\images\buyer-chart_rep.jpg" />
+    <Content Include="style\images\buyer_auth_03.jpg" />
+    <Content Include="style\images\buyer_auth_07.jpg" />
+    <Content Include="style\images\buyer_auth_book.jpg" />
+    <Content Include="style\images\email_icon.jpg" />
+    <Content Include="style\images\hover.jpg" />
+    <Content Include="style\images\login_ad.jpg" />
+    <Content Include="style\images\login_btn.jpg" />
+    <Content Include="style\images\login_btn_hover.jpg" />
+    <Content Include="style\images\logo.jpg" />
+    <Content Include="style\images\logout_icon.jpg" />
+    <Content Include="style\images\mainmenu_bg.jpg" />
+    <Content Include="style\images\message_icon.jpg" />
+    <Content Include="style\images\sing_icon.jpg" />
+    <Content Include="style\images\Supplier_rili.jpg" />
+    <Content Include="style\images\time_icon.jpg" />
+    <Content Include="style\images\top_bg.jpg" />
+    <Content Include="style\style.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -330,9 +420,16 @@
     <Content Include="Views\People\Details.cshtml" />
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Manager\Models\" />
+    <Folder Include="Areas\Receiver\Models\" />
+    <Folder Include="Areas\Supplier\Controllers\" />
+    <Folder Include="Areas\Supplier\Models\" />
+    <Folder Include="Areas\Supplier\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -342,13 +439,16 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407281042182_v1.resx">
-      <DependentUpon>201407281042182_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408011604029_v1.0.resx">
+      <DependentUpon>201408011604029_v1.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

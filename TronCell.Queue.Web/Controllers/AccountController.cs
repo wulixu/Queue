@@ -30,7 +30,8 @@ namespace TronCell.Queue.Web.Controllers
             UserManager = userManager;
         }
 
-        public ApplicationUserManager UserManager {
+        public ApplicationUserManager UserManager
+        {
             get
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -57,28 +58,46 @@ namespace TronCell.Queue.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = await UserManager.FindAsync(model.Email, model.Password);
-                if (user != null)
+                if (ModelState.IsValid)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                    var dbContext = ServiceLocator.Current.GetInstance<ApplicationDbContext>();
-                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
-                    if(userManager.GetRoles(user.Id).Contains("Admin"))
+                    var user = await UserManager.FindAsync(model.UserName, model.Password);
+                    if (user != null && user.Deleted == false)
                     {
-                        //RedirectToLocal();
+                        await SignInAsync(user, model.RememberMe);
+                        var dbContext = ServiceLocator.Current.GetInstance<ApplicationDbContext>();
+                        var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(dbContext));
+                        if (userManager.GetRoles(user.Id).Contains("Admin"))
+                        {
+                            return RedirectToAction("Index", "Admin/User");
+                        }
+                        else if (userManager.GetRoles(user.Id).Contains("Manager"))
+                        {
+                            return RedirectToAction("Index", "Manager/QueueCall");
+                        }
+                        else if (userManager.GetRoles(user.Id).Contains("Receiver"))
+                        {
+                            return RedirectToAction("Index", "Receiver/ChoiceArea");
+                        }
+                        else if (userManager.GetRoles(user.Id).Contains("Supplier"))
+                        {
+                            //return RedirectToAction("Index", "Supplier/Supplier");
+                        }
+                        return RedirectToLocal(returnUrl);
                     }
-                    return RedirectToLocal(returnUrl);
+                    else
+                    {
+                        ModelState.AddModelError("", "用户名密码不匹配!");
+                    }
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }
-            }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+                // If we got this far, something failed, redisplay form
+                return View(model);
+            }
+            catch (Exception ex) {
+                return View(model);
+            }
         }
 
         //
@@ -98,13 +117,13 @@ namespace TronCell.Queue.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email,CreatedTime = DateTime.Now};
+                var user = new ApplicationUser() { UserName = model.UserName,TrueName=model.TrueName, IDCard = model.IDCard, PhoneNumber = model.PhoneNumber, CompanyName = model.CompanyName, CreatedTime = DateTime.Now, Deleted = false };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
-
+                    IdentityManager im = new IdentityManager();
+                    im.AddUserToRole(user.Id, "supplier");
+                    //await SignInAsync(user, isPersistent: false);
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -122,13 +141,18 @@ namespace TronCell.Queue.Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        public ActionResult Details()
+        {
+            var userId = User.Identity.GetUserId();
+            ApplicationUser user=UserManager.FindById(userId);
+            return View(user);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null) 
+            if (userId == null || code == null)
             {
                 return View("Error");
             }
@@ -188,13 +212,13 @@ namespace TronCell.Queue.Web.Controllers
         {
             return View();
         }
-	
+
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            if (code == null) 
+            if (code == null)
             {
                 return View("Error");
             }
@@ -422,13 +446,13 @@ namespace TronCell.Queue.Web.Controllers
                     if (result.Succeeded)
                     {
                         await SignInAsync(user, isPersistent: false);
-                        
+
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
                         // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // SendEmail(user.Email, callbackUrl, "Confirm your account", "Please confirm your account by clicking this link");
-                        
+
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -538,7 +562,8 @@ namespace TronCell.Queue.Web.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

@@ -1,0 +1,23 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $("#@ViewBag.CurrentTab").addClass("hover");
+        //$(".main_menu ul li").click(function () {
+        //    var index = $(".main_menu ul li").index(this);
+        //$(this).addClass("hover").siblings().removeClass("hover");
+        //$(".showId").eq(index).show().siblings().hide();
+
+        $("#ReceiverTab").click(function () {
+            window.location.href = "/Receiver/ChoiceArea/index";
+        });
+        $("#HistoryTab").click(function () {
+            window.location.href = "/Receiver/HistoryData/index";
+        });
+        //});
+    });
+</script>
+<div class="main_menu">
+    <ul>
+        <li id="ReceiverTab">收料员收货<br /><span style='font-size:10px;color:#999;'>Queue Control</span></li>
+        <li id="HistoryTab">收货历史<br /><span style='font-size:10px;color:#999;'>History Report</span></li>
+    </ul>
+</div>

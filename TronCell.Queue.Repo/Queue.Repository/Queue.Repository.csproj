@@ -84,10 +84,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Queue.Entity\Queue.Entities.csproj">
-      <Project>{6d60606e-751b-4521-9e86-bf78ffbb94a6}</Project>
-      <Name>Queue.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\TronCell.Repository\Repository.Pattern.Ef6\Repository.Pattern.Ef6.csproj">
       <Project>{f68a1d19-93fb-47c1-a22b-42bea3e4fd8c}</Project>
       <Name>Repository.Pattern.Ef6</Name>

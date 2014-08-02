@@ -47,12 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Fitting.cs" />
-    <Compile Include="Models\FittingRoom.cs" />
-    <Compile Include="Models\Mapping\FittingMap.cs" />
-    <Compile Include="Models\Mapping\FittingRoomMap.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="Models\QueueEntity.cs" />
+    <Compile Include="Models\ReceiveAreaEntity.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

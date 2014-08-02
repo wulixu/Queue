@@ -26,7 +26,11 @@ namespace TronCell.Queue.Web.Models
         /// <summary>
         /// 优先级
         /// </summary>
-        public string Priority { get; set; }
+        public PriorityStatus Priority { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
         /// <summary>
         /// 开始时间
         /// </summary>
@@ -63,6 +67,10 @@ namespace TronCell.Queue.Web.Models
         /// </summary>
         [ForeignKey("ReceiveAreaId")]
         public virtual ReceiveArea ReceiveArea { get; set; }
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        public bool Deleted { get; set; }
     }
 
     /// <summary>
@@ -95,5 +103,18 @@ namespace TronCell.Queue.Web.Models
         /// </summary>
         [Display(Name = "延迟处理")]
         LazyProcess
+    }
+
+    public enum PriorityStatus {
+        /// <summary>
+        /// 优先送货
+        /// </summary>
+        [Display(Name="紧急送货")]
+        Urgent=1,
+        /// <summary>
+        /// 普通送货
+        /// </summary>
+        [Display(Name="一般送货")]
+        General
     }
 }

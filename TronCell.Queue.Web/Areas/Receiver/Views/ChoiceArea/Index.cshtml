@@ -1,0 +1,40 @@
+﻿@using Webdiyer.WebControls.Mvc;
+@model PagedList<TronCell.Queue.Web.Models.ReceiveArea>
+@{
+    ViewBag.Title = "选择收料区域";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentTab = "ReceiverTab";
+}
+@Html.Partial("ReceiverTabView")
+<h2>
+    选择当前你所在的收料区域
+</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AreaName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AreaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("进入", "Details", new { id = item.ReceiveAreaId, methodName = "firstQueue", queueCallId = 0 })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })

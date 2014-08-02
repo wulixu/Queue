@@ -1,0 +1,67 @@
+﻿@model IEnumerable<TronCell.Queue.Web.Models.QueueCall>
+@{
+    ViewBag.Title = "排队管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentTab = "QueueTab";
+}
+@Html.Partial("ManagerTabView")
+<h2>排队管理</h2>
+<table class="table">
+    <tr>
+        <th>
+            排队号码
+        </th>
+        <th>
+            供应商手机号
+        </th>
+        <th>
+            供应商名称
+        </th>           
+        <th>
+            车牌号
+        </th>
+        <th>
+            送货人
+        </th>
+        <th>
+            当前状态
+        </th>
+        <th>
+            创建时间
+        </th>
+        <th>
+            操作
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QueueNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QueueUser.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QueueUser.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QueueUser.CarNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QueueUser.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.ActionLink("插队", "JumpQueue", new { id = item.QueueCallId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,53 @@
+﻿@model TronCell.Queue.Web.Models.QueueCall
+
+@{
+    ViewBag.Title = "当前收料信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentTab = "ReceiverTab";
+}
+@Html.Partial("ReceiverTabView")
+<h2>收料操作,当前收料区域为 @Html.DisplayTextFor(model => model.ReceiveArea.AreaName) </h2>
+<hr />
+
+<h4>当前送货详细信息</h4>
+
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.QueueCallId)
+    <dl class="dl-horizontal">
+        <dt>
+            排队号：
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.QueueNum)
+        </dd>
+        <dt>
+            送货人：
+        </dt>
+
+        <dd>
+            @Html.DisplayTextFor(model => model.QueueUser.UserName)
+        </dd>
+
+        <dt>
+            身份证号码：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueueUser.IDCard)
+        </dd>
+
+        <dt>
+            手机号码：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QueueUser.PhoneNumber)
+        </dd>
+
+    </dl>
+@if (Model != null) {
+    @Html.ActionLink("过号", "Details", new { id = Model.ReceiveAreaId, methodName = "PassQueue", queueCallId = Model.QueueCallId, @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("有问题的收料", "Details", new { id = Model.ReceiveAreaId, methodName = "Problematic", queueCallId = Model.QueueCallId })
+    @Html.ActionLink("正常收料(下一个)", "Details", new { id = Model.ReceiveAreaId, methodName = "NextQueue", queueCallId = Model.QueueCallId })
+}

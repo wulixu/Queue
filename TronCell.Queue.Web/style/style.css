@@ -1,0 +1,1391 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*公用*/
+body {
+    font-family: "微软雅黑",Arial, Helvetica, sans-serif;
+    color: #2c2b2b;
+    background-color: #fff;
+    font-size: 12px;
+}
+
+img {
+    border: 0px none;
+}
+
+a:link, a:visited {
+    color: #08338f;
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover {
+    color: #1048c0;
+    text-decoration: none;
+    outline: none;
+}
+
+ul, li {
+    list-style: none;
+}
+
+div, ul, li, dl, dd, dt, p, span, a, body, h1, h2, input, form, h3, ol, tr, td {
+    padding: 0px;
+    margin: 0px;
+}
+
+.clear {
+    clear: both;
+}
+/*----footer----*/
+.footer {
+    width: 1000px;
+    overflow: hidden;
+    border-top: solid 1px #e5e5e5;
+    margin: 0px auto;
+    padding-top: 36px;
+    /*padding-bottom: 36px;*/
+    color: #7f7f7f;
+}
+
+.footer_l {
+    float: left;
+    width: 60%;
+}
+
+.footer_r {
+    float: right;
+    width: 40%;
+    text-align: right;
+}
+/*----head----*/
+.head {
+    width: 100%;
+    height: 83px;
+    background: url(images/top_bg.jpg) repeat-x left top;
+}
+
+.head_main {
+    width: 1000px;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+.logo {
+    width: 590px;
+    height: 72px;
+    overflow: hidden;
+    float: left;
+    margin-top: 9px;
+    float: left;
+}
+
+.logo_icon {
+    width: 150px;
+    height: 72px;
+    overflow: hidden;
+    float: left;
+}
+
+    .logo_icon a {
+        display: block;
+        width: 150px;
+        height: 72px;
+        overflow: hidden;
+    }
+
+.logo_text {
+    width: 440px;
+    height: 72px;
+    overflow: hidden;
+    font-size: 12.4px;
+    color: #999; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+    .logo_text p {
+        font-family: "微软雅黑",Arial, Helvetica, sans-serif;
+        color: #2c2b2b;
+        font-size: 26px;
+        padding-top: 5px;
+    }
+/*===========================登陆_INDEX==============================*/
+
+/*----login----*/
+.login {
+    width: 1000px;
+    /*overflow: hidden;*/
+    margin: 36px auto;
+}
+
+.login_ad {
+    width: 588px;
+    height: 420px;
+    float: left;
+}
+
+.login_form {
+    width: 265px;
+    float: right;
+    margin-right: 134px;
+    display: inline;
+    padding-top: 82px;
+}
+
+.login_form_title {
+    width: 253px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #7f7f7f;
+    background: url(images/sing_icon.jpg) no-repeat left 5px;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
+
+    .login_form_title p {
+        font-family: "微软雅黑",Arial, Helvetica, sans-serif;
+        color: #2c2b2b;
+        font-size: 24px;
+    }
+
+input.login_kw, input.login_pswd, input.login_email, input.login_role {
+    width: 250px;
+    height: 32px;
+    background-color: #fff;
+    border: solid 1px #dedede;
+    color: black;
+    padding-left: 13px;
+    line-height: 32px;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input.login_role {
+    width: 217px;
+}
+
+input.login_sub {
+    width: 265px;
+    height: 34px;
+    background: url(images/login_btn.jpg) no-repeat left top;
+    border: 0px none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+    input.login_sub:hover {
+        background: url(images/login_btn_hover.jpg) no-repeat left top;
+    }
+/*===========================用户界面_ADMIN==============================*/
+.main_menu {
+    width: 1000px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+    .main_menu ul {
+        width: 1000px;
+        height: 46px;
+        background: url(images/mainmenu_bg.jpg) repeat-x left bottom;
+        overflow: hidden;
+    }
+
+.main_menu ul li {
+    cursor: pointer;
+    float: left;
+    height: 36px;
+    overflow: hidden;
+    padding-top: 10px;
+    text-align: center;
+    width: 112px;
+}
+
+            .main_menu ul li.hover {
+                background: url(images/hover.jpg) no-repeat left top;
+            }
+
+.admin {
+    width: 950px;
+    overflow: hidden;
+    margin: 0px auto;
+    padding: 25px;
+}
+
+.admin_list, .admin_setting {
+    /*display: none;*/
+}
+
+.admin_list {
+    width: 950px;
+    overflow: hidden;
+}
+
+.add_new_user {
+    width: 92px;
+    height: 42px;
+}
+
+    .add_new_user a {
+        display: block;
+        width: 92px;
+        height: 42px;
+        background-color: #08338f;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+        line-height: 42px;
+    }
+
+.data_form {
+    width: 950px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    overflow:visible;
+}
+
+    .data_form table {
+        border-top: solid 1px #ededed;
+        border-left: solid 1px #ededed;
+    }
+
+        .data_form table tr {
+            height: 50px;
+        }
+
+    .data_form td {
+        border-right: solid 1px #ebebeb;
+        border-bottom: solid 1px #ebebeb;
+        text-align: center;
+    }
+
+.data_bold {
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    color: #000;
+}
+
+.data_subtitle {
+    text-align: center;
+    color: #bfbfbf;
+}
+
+.data_form tr.data_form_head {
+    height: 60px;
+}
+
+tr.data_form_head td {
+    text-align: center;
+    color: #999;
+}
+
+#CreateProductForm td {
+    text-align: center;
+    color: #bfbfbf;
+}
+
+td.data_no {
+    font-weight: bold;
+}
+
+.actions {
+    overflow: hidden;
+    text-align: center;
+}
+
+.change_pswd {
+    height: 25px;
+    width: 120px;
+    float: left;
+    margin-left: 25px;
+    display: inline;
+}
+
+    .change_pswd a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 120px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .change_pswd a:hover {
+            background-color: yellowgreen;
+        }
+
+.delete {
+    height: 25px;
+    width: 54px;
+    float: left;
+    margin-left: 7px;
+    display: inline;
+}
+
+    .delete a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 54px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .delete a:hover {
+            background-color: #fb8b8a;
+        }
+
+.edit {
+    height: 25px;
+    width: 54px;
+    float: left;
+    margin-left: 7px;
+    display: inline;
+}
+
+    .edit a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 54px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .edit a:hover {
+            background-color: yellowgreen;
+        }
+
+.normal {
+    height: 25px;
+    width: 54px;
+    float: left;
+    margin-left: 7px;
+    display: inline;
+}
+
+    .normal a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 54px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .normal a:hover {
+            background-color: #eaeaea;
+        }
+
+/*---admin_setting---*/
+.admin_setting {
+    width: 950px;
+    overflow: hidden;
+}
+
+.time_set, .email_set, .message_set {
+    width: 950px;
+}
+
+.time_set_title, .email_set_title, .message_set_title {
+    font-size: 14px;
+    background: url(images/time_icon.jpg) no-repeat left top;
+    height: 15px;
+    padding-left: 30px;
+    padding-bottom: 24px;
+}
+
+.message_set_title {
+    background: url(images/message_icon.jpg) no-repeat left top;
+}
+
+.email_set_title {
+    background: url(images/email_icon.jpg) no-repeat left top;
+}
+
+.time_set_list {
+    width: 944px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border: solid 1px #ebebeb;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 50px;
+}
+
+    .time_set_list ul {
+        width: 944px;
+        border-bottom: solid 1px #ebebeb;
+        border-top: solid 1px #ffffff;
+        overflow: hidden;
+    }
+
+        .time_set_list ul li {
+            height: 30px;
+            float: left;
+            line-height: 30px;
+            margin: 15px;
+            font-size: 16px;
+        }
+
+.book_num {
+    padding-left: 290px;
+    border-left: solid 1px #ebebeb;
+}
+
+    .book_num input {
+        width: 80px;
+        height: 28px;
+        border: solid 1px #cccccc;
+        text-align: center;
+        line-height: 28px;
+        color: #294e9e;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+.email_set_form, .message {
+    width: 914px;
+    height: 138px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    border: solid 1px #f2f2f2;
+    padding-top: 40px;
+    padding-left: 34px;
+    margin-bottom: 50px;
+}
+
+.email_email, .email_pswd, .message_area {
+    font-size: 16px;
+}
+
+    .email_email input, .email_pswd input {
+        width: 250px;
+        height: 28px;
+        overflow: hidden;
+        line-height: 28px;
+        background-color: #fff;
+        border: solid 1px #ccc;
+        margin-left: 10px;
+        margin-bottom: 30px;
+        padding-left: 10px;
+    }
+
+    .message_area textarea {
+        width: 728px;
+        height: 104px;
+        overflow: hidden;
+        background-color: #fff;
+        border: solid 1px #ccc;
+        float: right;
+        margin-right: 70px;
+        display: inline;
+        padding-left: 10px;
+    }
+/*=========================================买家_buyer=======================================*/
+.buyer {
+    width: 950px;
+    overflow: visible;
+    margin: 0px auto;
+    padding: 25px;
+}
+
+.buyer_auth, .buyer_auth_details, .supplier_index {
+    /*display: none;默认显示*/
+}
+
+.discard {
+    height: 25px;
+    width: 64px;
+    float: left;
+    margin-left: 25px;
+    display: inline;
+}
+
+    .discard a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 64px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .discard a:hover {
+            background-color: #fb8b8a;
+        }
+
+.details {
+    height: 25px;
+    width: 64px;
+    float: left;
+    margin-left: 10px;
+    display: inline;
+}
+
+    .details a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 64px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .details a:hover {
+            background-color: #f3fd91;
+        }
+
+.agree {
+    height: 25px;
+    width: 64px;
+    float: left;
+    margin-left: 10px;
+    display: inline;
+}
+
+    .agree a {
+        display: block;
+        text-align: center;
+        line-height: 25px;
+        height: 25px;
+        background-color: #cfcfcf;
+        width: 64px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+        color: #000;
+    }
+
+        .agree a:hover {
+            background-color: #90cd92;
+        }
+
+.details_info {
+    width: 950px;
+    position: relative;
+    z-index: 2;
+}
+
+.details_info_l {
+    width: 720px;
+    height: 100px;
+    float: left;
+}
+
+.d_i_l_li {
+    margin-bottom: 20px;
+}
+
+    .d_i_l_li span {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+.details_info_r {
+    width: 230px;
+    float: right;
+    height: 100px;
+    overflow: hidden;
+}
+
+.approve, .disapprove {
+    width: 150px;
+    height: 30px;
+    overflow: hidden;
+    float: left;
+    margin-left: 10px;
+    display: inline;
+}
+
+    .approve a, .disapprove a {
+        display: block;
+        width: 150px;
+        height: 30px;
+        overflow: hidden;
+        line-height: 30px;
+        text-align: center;
+        background-color: #39b320;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .disapprove a {
+        background-color: #d71015;
+    }
+
+.is_urgent {
+    width: 950px;
+    position: relative;
+    z-index: 1;
+}
+
+.is_urgent_head {
+    width: 950px;
+    height: 33px;
+    display: none;
+}
+
+.is_urgent_check {
+    width: 181px;
+    height: 33px;
+    overflow: hidden;
+    float: left;
+    /*border-right:solid 1px #ccc;*/
+    line-height: 33px;
+}
+
+.buyer_res_check {
+    width: 20px;
+    margin-left: 40px;
+    border-right: none 0px;
+}
+
+.is_urgent_check span {
+    background: url(images/buyer_auth_03.jpg) no-repeat left 5px;
+    display: block;
+    width: 20px;
+    height: 22px;
+    overflow: hidden;
+    float: left;
+    margin-right: 5px;
+    display: inline;
+    padding: 0px;
+}
+
+.is_urgent_who {
+    width: 230px;
+    height: 33px;
+    float: left;
+    margin-left: 10px;
+    display: inline;
+    position: relative;
+    line-height: 33px;
+    z-index: 9999;
+}
+
+.is_urgent_who_show {
+    position: absolute;
+    right: 0px;
+    height: 33px;
+    width: 99px;
+    top: 0px;
+    background: url(images/buyer_auth_07.jpg) no-repeat left top;
+    text-align: left;
+    padding-left: 10px;
+    line-height: 33px;
+}
+
+.is_urgent_who_select {
+    position: absolute;
+    right: 0px;
+    height: 33px;
+    width: 132px;
+    top: 0px;
+    background: url(images/buyer_auth_07.jpg) no-repeat left top;
+    text-align: left;
+    padding-left: 10px;
+    line-height: 33px;
+    cursor: pointer;
+}
+
+    .is_urgent_who_select ul {
+        position: absolute;
+        width: 132px;
+        padding: 5px;
+        background-color: #dedede;
+        overflow: hidden;
+        left: 0px;
+        top: 33px;
+        display: none;
+        z-index: 100;
+    }
+
+        .is_urgent_who_select ul li {
+            cursor: pointer;
+        }
+.is_urgent_form{
+}
+.is_urgent_text {
+    width: 700px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+}
+
+.is_urgent_reason_text {
+    width:700px;height:28px;
+    background-color: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px 5px 5px 5px;
+    line-height: 33px;
+    padding-left: 10px;
+
+}
+    .is_urgent_text textarea {
+        width: 700px;
+        height: 148px;
+        overflow: hidden;
+        border: solid 1px #ccc;
+        background-color: #fff;
+        margin-top: 10px;
+    }
+
+.the_book_num {
+    color: #093191;
+    display: inline;
+    float: left;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    margin-left: 10px;
+    overflow: hidden;
+    width: 200px;
+}
+
+.the_book_muser {
+    color: #093191;
+    float: left;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    position: relative;
+    width: 208px;
+}
+
+.the_book_num span {
+    color: #919191;
+    font-weight: normal;
+}
+
+    .the_book_num span input {
+    background-color: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px 5px 5px 5px;
+    height: 31px;
+    line-height: 33px;
+    padding-left: 10px;
+    width: 120px;
+    }
+
+.confirm_set {
+    width: 100px;
+    height: 33px;
+    float: right;
+}
+
+    .confirm_set a {
+        width: 100px;
+        height: 33px;
+        display: block;
+        background-color: #38b420;
+        line-height: 33px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+    }
+
+.receman {
+    color: #093191;
+    display: inline;
+    float: left;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    margin-left: 10px;
+    margin-top: 15px;
+    overflow: hidden;
+    width: 150px;
+}
+
+    .receman span {
+        color: #919191;
+        font-weight: normal;
+    }
+
+.comment {
+    background-color: #EBEBEB;
+    color: #093191;
+    display: inline;
+    float: left;
+    font-weight: bold;
+    height: 60px;
+    line-height: 33px;
+    margin-left: 40px;
+    padding: 16px 10px 22px;
+    position: relative;
+    width: 668px;
+}
+
+.c_iuws {
+    left: 110px;
+    top: 17px;
+}
+
+.comment_textarea {
+    width: 300px;
+    float: right;
+}
+
+    .comment_textarea textarea {
+        width: 300px;
+        background-color: #fff;
+        border: solid 1px #ccc;
+    }
+/*================================*/
+.rece {
+    background-color: #EBEBEB;
+    color: #093191;
+    display: inline;
+    font-weight: bold;
+    height: 60px;
+    line-height: 33px;
+    margin-left: 40px;
+    padding: 16px 10px 22px;
+    float:left;
+    position: relative;
+    width: 168px;
+}
+.rece_name {
+    width: 100px;
+    float: right;
+}
+
+._receman {
+    color: #093191;
+    display: inline;
+    float: left;
+    font-weight: bold;
+    height: 33px;
+    line-height: 33px;
+    margin-left: 10px;
+    margin-top: 0px;
+    overflow: hidden;
+    width: 200px;
+}
+
+    ._receman span {
+        color: #919191;
+        font-weight: normal;
+    }
+
+._comment {
+    background-color: #EBEBEB;
+    color: #093191;
+    display: inline;
+    font-weight: bold;
+    height: 60px;
+    line-height: 33px;
+    padding: 16px 10px 22px;
+    float:left;
+    position: relative;
+    width: 930px;
+}
+
+._c_iuws {
+    left: 110px;
+    top: 17px;
+    margin-left:220px;
+}
+
+._comment_textarea {
+    width: 200px;
+    float: right;
+}
+
+
+    ._comment_textarea textarea {
+        width: 200px;
+        background-color: #fff;
+        border: solid 1px #ccc;
+    }
+
+/*================================*/
+
+.buyer_chart {
+    width: 950px;
+    overflow: hidden;
+}
+
+.buyer_chart_ul {
+    overflow: hidden;
+    width: 1134px;
+}
+
+    .buyer_chart_ul li {
+        float: left;
+        width: 336px;
+        height: 340px;
+        overflow: hidden;
+        margin-right: 228px;
+        display: inline;
+        margin-bottom: 80px;
+    }
+
+        .buyer_chart_ul li p {
+            font-weight: bold;
+            text-align: center;
+        }
+
+            .buyer_chart_ul li p span {
+                color: #7f7f7f;
+                display: block;
+                text-align: center;
+                font-weight: normal;
+            }
+/*=========================================_supplier=======================================*/
+.supplier {
+    width: 950px;
+    overflow: hidden;
+    margin: 0px auto;
+    padding: 25px;
+}
+
+.want_to_date {
+    width: 248px;
+    height: 33px;
+    overflow: hidden;
+    position: relative;
+    line-height: 33px;
+    float: left;
+}
+
+.sup_d_i_l {
+    width: 700px;
+}
+
+.want_to_text {
+    position: absolute;
+    right: 0px;
+    height: 32px;
+    width: 142px;
+    top: 0px;
+    text-align: left;
+    line-height: 33px;
+}
+
+    .want_to_text input {
+        width: 130px;
+        height: 31px;
+        line-height: 33px;
+        padding-left: 10px;
+        border: none 0px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -oborder-radius: 5px;
+        border-radius: 5px;
+        border: solid 1px #dedede;
+        background-color: #fff;
+    }
+
+
+.want_to_time {
+    float: left;
+    height: 33px;
+    line-height: 33px;
+    position: relative;
+    width: 248px;
+    margin-left: 20px;
+    display: inline;
+}
+
+.add_new_book {
+    height: 42px;
+    overflow: hidden;
+    float: right;
+    margin-right: 10px;
+    display: inline;
+}
+
+.timeSection {
+    position: absolute;
+    right: 0px;
+    height: 33px;
+    width: 132px;
+    top: 0px;
+    text-align: left;
+    padding-left: 10px;
+    line-height: 33px;
+    cursor: pointer;
+}
+.add_new_book a:hover{
+	background-color:#3863BF;
+}
+.delete_book a:hover {
+    background-color:#3863BF;
+}
+.add_new_book a {
+    display: block;
+    width: 98px;
+    height: 42px;
+    overflow: hidden;
+    line-height: 42px;
+    text-align: center;
+    background-color: #08338f;
+    color: #fff;
+    font-weight: bold;
+}
+
+.data_search {
+    width: 956px;
+    overflow: hidden;
+}
+
+.data_search_in_l, .data_search_in_r, .data_search_line, .data_search_btn {
+    float: left;
+}
+
+    .data_search_in_l input, .data_search_in_r input {
+        background-color: #FFFFFF;
+        border: 1px solid #DEDEDE;
+        -moz-border-radius: 5px 5px 5px 5px;
+        -webkit-border-radius: 5px 5px 5px 5px;
+        -o-border-radius: 5px 5px 5px 5px;
+        border-radius: 5px 5px 5px 5px;
+        height: 31px;
+        line-height: 33px;
+        padding-left: 10px;
+        width: 130px;
+    }
+
+    .data_search_in_l span {
+        display: block;
+        line-height: 31px;
+        float: left;
+        padding-right: 10px;
+        font-weight: bold;
+        color: #093191;
+    }
+
+.data_search_line {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.data_search_btn input {
+    background-color: #08338F;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -o-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    color: #fff;
+    display: block;
+    height: 33px;
+    line-height: 25px;
+    text-align: center;
+    width: 64px;
+    border: none 0px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#page, #page ul {
+    width: 950px;
+    overflow: hidden;
+}
+
+    #page ul li {
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-right: 10px;
+        display: inline;
+    }
+
+        #page ul li a {
+            display: block;
+            width: 18px;
+            height: 18px;
+            overflow: hidden;
+            background-color: #fff;
+            border: solid 1px #dedede;
+            line-height: 18px;
+            text-align: center;
+        }
+
+        #page ul li#page_cur a {
+            border: solid 1px #ff0000;
+        }
+
+        #page ul li#page_prev, #page ul li#page_prev a, #page ul li#page_next, #page ul li#page_next a {
+            width: 40px;
+        }
+
+.create_role {
+    width: 265px;
+    height: 44px;
+    background: url(images/buyer_auth_07.jpg) no-repeat right 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.create_role_list {
+    position: absolute;
+    width: 237px;
+    background-color: #fdfdfd;
+    border: 1px solid #DEDEDE;
+    border-top: none 0px;
+    padding: 13px;
+    display: none;
+    height: 120px;
+    overflow-y: scroll;
+}
+
+    .create_role_list li {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: solid 1px #f1f1f1;
+    }
+
+        .create_role_list li:hover {
+            background-color: #f9f9f9;
+        }
+
+.create_sub {
+    border: 0 none;
+    cursor: pointer;
+    height: 34px;
+    margin-top: 10px;
+    width: 265px;
+    background-color: #083391;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    font-family: "微软雅黑";
+}
+.create_sub:hover{
+	background-color:#3863BF;
+}
+.comment select {
+    width: 60px;
+    height: 20px;
+    float: right;
+    border: solid 1px #dedede;
+    background-color: #fff;
+    margin-right: 10px;
+    display: inline;
+    margin-top: 8px;
+}
+
+.login_status {
+    width: 410px;
+    height: 72px;
+    overflow: hidden;
+    float: right;
+    margin-top: 10px;
+    display: inline;
+}
+
+.login_status_t {
+    padding-top: 4px;
+    overflow: hidden;
+}
+
+.login_welcome, .status_setting, .status_logout {
+    float: right;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.login_welcome {
+    border-right: solid 1px #ccc;
+}
+
+.status_setting {
+    background: url(images/admin_setting_icon.jpg) no-repeat left center;
+    margin-left: 10px;
+    display: inline;
+    padding-left: 14px;
+}
+
+.status_logout {
+    border-right: solid 1px #ccc;
+    background: url(images/logout_icon.jpg) no-repeat left center;
+    margin-left: 10px;
+    display: inline;
+    padding-left: 14px;
+}
+
+.login_status_b {
+    color: #1048c0;
+    text-align: right;
+    padding-top: 16px;
+}
+
+.delete_book {
+    height: 42px;
+    overflow: hidden;
+    float: right;
+    margin-right: 10px;
+    display: inline;
+}
+
+    .delete_book a {
+        display: block;
+        width: 70px;
+        height: 42px;
+        line-height: 42px;
+        overflow: hidden;
+        text-align: center;
+        background-color: #08338F;
+        color:#fff;
+    }
+    .add_new_book_add{
+}
+.add_new_book_add a{
+    width:70px;
+}
+.the_book_num_1{
+     width: 150px;
+}
+/*=========================================_receiver=======================================*/
+.sap_select_box {
+    width: 320px;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    font-weight: bold;
+    color: #093191;
+}
+
+.sap_select {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 265px;
+    height: 44px;
+    background: url(images/buyer_auth_07.jpg) no-repeat left 10px;
+    cursor: pointer;
+    padding-top: 5px;
+    margin-top: -2px;
+    float: right;
+    display: inline;
+}
+
+.sap_select_input {
+    width: 100px;
+    height: 40px;
+    padding-left: 13px;
+    line-height: 40px;
+    margin-top: 2px;
+}
+
+.sap_select_list {
+    position: absolute;
+    width: 237px;
+    background-color: #fdfdfd;
+    border: 1px solid #DEDEDE;
+    border-top: none 0px;
+    padding: 13px;
+    display: none;
+    z-index: 10000;
+}
+
+    .sap_select_list li {
+        height: 30px;
+        line-height: 30px;
+        border-bottom: solid 1px #f1f1f1;
+    }
+
+        .sap_select_list li:hover {
+            background-color: #f9f9f9;
+        }
+
+.cellText {
+    width: 98%;
+    height: 98%;
+    height: 44px;
+    line-height: 44px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -o-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DEDEDE;
+}
+
+.cellTextArea {
+    width: 98%;
+    height: 98%;
+    height: 44px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -o-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #DEDEDE;
+}
+
+.vcode {
+    overflow: hidden;
+}
+
+    .vcode input {
+        width: 140px;
+        height: 32px;
+        background-color: #fff;
+        border: solid 1px #dedede;
+        color: #dedede;
+        padding-left: 13px;
+        line-height: 32px;
+        margin-top: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .vcode img {
+        width: 100px;
+        height: 32px;
+        float: right;
+        margin-top: 10px;
+    }
+
+.listitem td {
+    overflow: hidden;
+}
+.hisnormal
+{
+margin-left:42px;}
+
+.userSearchtext {
+    padding-left: 10px; height: 41px; width: 128px; float: left; border: solid 1px #ccc;
+}
+.userserchbutton {
+    height: 43px; width: 60px; float: right; background-color: #ccc; border: none 0px;
+}
+
+.redfont
+{
+    color:red;
+}
+    .redfont input
+    {
+        color:red;
+    }
+
+    .greenfont
+{
+    color:green;
+}
+    .greenfont input
+    {
+        color:green;
+    }
