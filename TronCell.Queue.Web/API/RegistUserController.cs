@@ -44,6 +44,7 @@ namespace TronCell.Queue.Web.API
                 user.UserName = IDCardNum;
                 user.TrueName = name;
                 user.PhoneNumber = phoneNum;
+                user.IDCard = IDCardNum;
                 user.CreatedTime = DateTime.Now;
                 user.Deleted = false;
                 IdentityResult result = UserManager.Create(user, "123456");
