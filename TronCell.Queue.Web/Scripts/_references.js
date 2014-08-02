@@ -7,3 +7,4 @@
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="respond.matchmedia.addlistener.js" />
 /// <reference path="jquery.unobtrusive-ajax.js" />
+/// <reference path="jquery-ui-1.8.24.js" />

@@ -17,9 +17,9 @@
         <dt>
             排队号：
         </dt>
-
         <dd>
-            @Html.DisplayTextFor(model => model.QueueNum)
+            <input type="text" onkeypress="EnterPress(event)" onkeydown="EnterPress()" />
+            @*@Html.DisplayTextFor(model => model.QueueNum)*@
         </dd>
         <dt>
             送货人：
@@ -51,3 +51,11 @@
     @Html.ActionLink("有问题的收料", "Details", new { id = Model.ReceiveAreaId, methodName = "Problematic", queueCallId = Model.QueueCallId })
     @Html.ActionLink("正常收料(下一个)", "Details", new { id = Model.ReceiveAreaId, methodName = "NextQueue", queueCallId = Model.QueueCallId })
 }
+<script>
+    function EnterPress(e) { //传入 event
+        var e = e || window.event;
+        if (e.keyCode == 13) {
+            alert("hello friend");
+        }
+    }
+</script>

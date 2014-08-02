@@ -13,6 +13,7 @@ using Owin;
 using TronCell.Queue.Web;
 using TronCell.Queue.Web.Models;
 using Microsoft.Practices.ServiceLocation;
+using System.Data.Entity;
 
 namespace TronCell.Queue.Web.Controllers
 {
@@ -141,11 +142,38 @@ namespace TronCell.Queue.Web.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        public ActionResult Details()
+
+        public ActionResult Edit()
         {
             var userId = User.Identity.GetUserId();
-            ApplicationUser user=UserManager.FindById(userId);
-            return View(user);
+            ApplicationUser userprofile = UserManager.FindById(userId);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(userprofile);
+            }
+            if (userprofile == null)
+            {
+                return HttpNotFound();
+            }
+            return View();
+        }
+
+        //
+        // POST: /Admin/User/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(ApplicationUser userprofile)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            if (ModelState.IsValid)
+            {
+                db.Entry(userprofile).State = EntityState.Modified;
+                db.SaveChanges();
+                return this.Json(new { result = true });
+            }
+            if (Request.IsAjaxRequest())
+                return PartialView(userprofile);
+            return View(userprofile);
         }
         //
         // GET: /Account/ConfirmEmail
