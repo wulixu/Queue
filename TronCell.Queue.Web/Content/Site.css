@@ -148,13 +148,13 @@ img {
 @charset "utf-8";
 /* CSS Document */
 /*公用*/
-body{
+html > body body{
 	font-family:"微软雅黑",Arial, Helvetica, sans-serif;
 	color:#2c2b2b;
 	background-color:#fff;
 	font-size:14px;
 }
-img{
+html > body img{
 	border:0px none;
 }
 a:link,a:visited{
@@ -167,7 +167,7 @@ a:hover{
  	text-decoration:none;
 	outline:none;
 }
-ul,li{
+ul,html > body li{
 	list-style:none;
 }
 .clear{
@@ -183,7 +183,22 @@ ul,li{
 .intro_main{width:1000px;margin:0px auto;padding-top:40px;padding-bottom:40px;}
 .intro_main h2{font-size:30px;text-align:center;}
 .intro_main p{font-size:12px;color:#6f6f6f;text-align:center;height:30px;overflow:hidden;line-height:24px;}
-.read_more{width:100px;height:30px;line-height:30px;text-align:center;color:#0787c9;border:solid 1px #0787c9; border-radius:5px;-moz-border-radius:5px;cursor:pointer;-ms-border-radius:5px;-o-border-radius:5px;-webkit-border-radius:5px;margin-left:450px;margin-top:50px;}
+.read_more {
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #0787c9;
+    border: solid 1px #0787c9;
+    -moz-border-radius: 5px;
+    cursor: pointer;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-left: 450px;
+    margin-top: 50px;
+}
 /*---featrue--*/
 .featrue{width:1000px;height:275px;background:url(images/feartrue.jpg) no-repeat left top;margin:0px auto;margin-top:40px;margin-bottom:40px;}
 /*--process---*/
@@ -194,7 +209,7 @@ ul,li{
 .inner_top_left{float:left;width:60%;overflow:hidden;}
 .inner_top_left img{float:left;}
 #inner_text_w{color:#fff;margin-left:10px;}
-.logo_text{float:left;margin-top:20px;display:inline;}
+.logo_text{float:left;display:inline;}
 .inner_logo_text{margin-top:10px;}
 .logo_text h1{font-size:20px;color:#2c2b2b;font-weight:normal;}
 .logo_text p{font-size:10px;color:#d3d3d3;}
@@ -216,7 +231,6 @@ ul,li{
 	float:left;
 }
 .inner_login_right{
-	width:265px;
 	float:right;
 	margin-right:134px;
 	display:inline;
@@ -322,7 +336,7 @@ input.login_sub:hover{
 .table_list_td{width:165px;height:50px;float:left;text-align:center;line-height:50px;border-right:solid 1px #dedede;}
 .last_td{border:none;}
 a.bj_td{margin-left:20px;margin-top:10px;display:block;width:59px;height:32px;background:url(images/action.jpg) no-repeat left top;float:left; text-indent:-9999px;overflow:hidden;}
-a.del_td{margin-top:10px;display:block;width:59px;height:32px;background:url(images/action.jpg) no-repeat -64px top;float:left;margin-left:5px;display:inline;text-indent:-9999px;overflow:hidden;}
+a.del_td{display:block;background:url(images/action.jpg) no-repeat -64px top;float:left;margin-left:5px;text-indent:-9999px;overflow:hidden;}
 .w_1{width:180px;}.w_2{width:342px;}.w_3{width:245px;}
 .grey_bg{background:#fbfbfb;}
 /*----updata_user----*/
