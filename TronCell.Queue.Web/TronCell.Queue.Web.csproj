@@ -261,11 +261,6 @@
     </Compile>
     <Compile Include="Helper\EnumCOM.cs" />
     <Compile Include="Helper\SendMSS.cs" />
-    <Compile Include="Migrations\201408011604029_v1.0.cs" />
-    <Compile Include="Migrations\201408011604029_v1.0.Designer.cs">
-      <DependentUpon>201408011604029_v1.0.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\QueueModel.cs" />
@@ -286,7 +281,9 @@
     <Content Include="Content\First.min.css">
       <DependentUpon>First.css</DependentUpon>
     </Content>
+    <Content Include="Content\images\action.jpg" />
     <Content Include="Content\images\admin_setting_icon.jpg" />
+    <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\buyer-chart_data.jpg" />
     <Content Include="Content\images\buyer-chart_pie.jpg" />
     <Content Include="Content\images\buyer-chart_plotting.jpg" />
@@ -294,18 +291,28 @@
     <Content Include="Content\images\buyer_auth_03.jpg" />
     <Content Include="Content\images\buyer_auth_07.jpg" />
     <Content Include="Content\images\buyer_auth_book.jpg" />
+    <Content Include="Content\images\cdj.jpg" />
     <Content Include="Content\images\email_icon.jpg" />
+    <Content Include="Content\images\feartrue.jpg" />
+    <Content Include="Content\images\hbg.jpg" />
     <Content Include="Content\images\hover.jpg" />
+    <Content Include="Content\images\ibg.jpg" />
+    <Content Include="Content\images\jhbg.jpg" />
     <Content Include="Content\images\login_ad.jpg" />
     <Content Include="Content\images\login_btn.jpg" />
     <Content Include="Content\images\login_btn_hover.jpg" />
-    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\logout_icon.jpg" />
+    <Content Include="Content\images\logo_inner.jpg" />
+    <Content Include="Content\images\logo_inner.png" />
     <Content Include="Content\images\mainmenu_bg.jpg" />
     <Content Include="Content\images\message_icon.jpg" />
+    <Content Include="Content\images\process.jpg" />
+    <Content Include="Content\images\savebg.jpg" />
     <Content Include="Content\images\sing_icon.jpg" />
     <Content Include="Content\images\Supplier_rili.jpg" />
     <Content Include="Content\images\time_icon.jpg" />
+    <Content Include="Content\images\topbg_inner.jpg" />
     <Content Include="Content\images\top_bg.jpg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -361,6 +368,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\variables.min.css">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -395,11 +408,9 @@
     <Content Include="Areas\Receiver\Views\HistoryData\Index.cshtml" />
     <Content Include="Areas\Receiver\Views\Shared\ReceiverTabView.cshtml" />
     <Content Include="Areas\Manager\Views\HistoryData\Index.cshtml" />
-    <None Include="BundleTransformer.Configuration.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Content\First.less" />
-    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\bootswatch.less" />
+    <Content Include="Content\variables.less" />
     <None Include="Properties\PublishProfiles\QueueWeb.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -473,11 +484,6 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\People\Create.cshtml" />
-    <Content Include="Views\People\Delete.cshtml" />
-    <Content Include="Views\People\Details.cshtml" />
-    <Content Include="Views\People\Edit.cshtml" />
-    <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -495,11 +501,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408011604029_v1.0.resx">
-      <DependentUpon>201408011604029_v1.0.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

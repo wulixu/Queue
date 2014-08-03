@@ -8,48 +8,51 @@
 }
 @Html.Partial("AdminTabView")
 
-<p>
-    @Html.ActionLink("添加新窗口", "Create", new { @class = "btn btn-primary btn-lg" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AreaName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateTime)
-        </th>
-        <th>
-            操作
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AreaName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateTime)
-        </td>
-        <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.ReceiveAreaId }) |
-            @Html.ActionLink("删除", "Delete", new { id=item.ReceiveAreaId })
-        </td>
-    </tr>
-}
-
+<div class="col-md-2" style="float: right">
+    @Html.ActionLink("添加新窗口", "Create", null, new { @class = "btn btn-primary btn-block" })
+</div>
+<table class="table table-bordered  table-striped table-hover">
+    <thead>
+        <tr class="table_box_head">
+            <th>
+                @Html.DisplayNameFor(model => model.AreaName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateTime)
+            </th>
+            <th>
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AreaName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateTime)
+                </td>
+                <td>
+                    @Html.ActionLink("编辑", "Edit", new { id = item.ReceiveAreaId },new { @class = "btn btn-primary",@role="button"}) &nbsp;|&nbsp;
+                    @Html.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId }, new { @class = "btn btn-danger", @role = "button" })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })

@@ -23,7 +23,9 @@ namespace TronCell.Queue.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.min.css",
+                "~/Content/bootswatch.css",
+                "~/Content/variables.css",
+                      "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

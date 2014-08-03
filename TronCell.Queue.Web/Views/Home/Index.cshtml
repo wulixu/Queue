@@ -1,9 +1,58 @@
 ﻿@{
     ViewBag.Title = "欢迎使用";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>@ViewBag.Title 无锡创思感知排队叫号系统</title>
+        <style type="text/css">.home { color: black; }</style>         @Styles.Render("~/Content/css")         @Scripts.Render("~/bundles/modernizr")         @Styles.Render("~/Content/themes/base/jquery.ui.all.css")         @Styles.Render("~/Content/themes/base/jquery.ui.datepicker.css")         @Scripts.Render("~/scripts/jquery-2.1.1.js")         @Scripts.Render("~/scripts/jquery-ui-1.8.24.js")         @Scripts.Render("~/scripts/jquery-ui-1.8.24.min.js")         @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")         @Scripts.Render("~/scripts/jqueryvalidate.min.js")
+    </head> 
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top white">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">                         <span class="icon-bar"></span>                         <span class="icon-bar"></span>                         <span class="icon-bar"></span>                     </button>
+                    <a href="@Url.Action("Index", "Home", new { area = ""})" class="navbar-brand">
+                        <img src="~/Content/images/logo.png" alt="创思感知排队系统" style="float:left;padding-top: 0px" />
+                        <p class="nav home">创思感知排队叫号系统</p>
 
-<div class="jumbotron">
-    <h1>ASP.NET @ViewBag.RoomName</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+                    </a>
+                </div>                 <div class="navbar-collapse collapse">                     @*<ul class="nav navbar-nav">                     <li>@Html.ActionLink("Home", "Index", "Home")</li>                     <li>@Html.ActionLink("About", "About", "Home")</li>                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                 </ul>*@                     @Html.Partial("_LoginPartial")                 </div>
+            </div>
+        </div>         <div class="body-content">
+    @*<div class="jumbotron">*@
+    <div class="banner" style="background-position: -8.5px;">
+        <div class="banner_main"><a href="@Url.Action("Register" , "Account",new { id="registerLink" })"></a></div>
+    </div>
+
+    <div class="about">
+        <div class="about_head">
+            <h2></h2>
+        </div>
+        <div class="intro">
+            <div class="intro_main">
+                <h2>专门针对生产型企业供应商送货而设计的智能排队系统</h2>
+                <p>
+                    随着社会经济的高速发展，许多生产型企业走向世界，面对全球客户，产品的需求量逐年剧增，同时供应商体系越来越庞大，送货数量和频字也在急剧增长，许多生产型企业送货现场车水马龙，混乱一片，不仅给企业造成了巨大的混乱，而且收货效率特别低下，影响企业的业绩增长，已经成为企业有待迫切解决的问题。
+
+                    由于长时间为世界500强生产企业的生产部门提供服务，创思感知科技有限公司在第一时间发现供应商送货混乱的问题，组织人员开发了创思感知排队叫号系统，大大帮助企业解决了收货混乱，提高了收货的效率，保证了企业的正常生产，同时帮助供应商能正常有序的送货，提升了供应商的供货效率。 请登陆创思感知排队叫号系统，体验智能排队叫号系统给大家带来的轻松愉悦的送货收货体验！
+                </p>
+                <div class="read_more">阅读全部</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="featrue">
+        </div>
+        <div class="process"></div>
+        @*</div>*@             <hr />             <footer>                 <p>Copyright &copy; @DateTime.Now.Year <a href="http://www.troncell.com">TronCell</a> Inc. All rights reserved.</p>          </footer> 
+    </div> 
+        </div>     @Scripts.Render("~/bundles/jquery")         @Scripts.Render("~/bundles/bootstrap")
+    </body> 
+</html>
+
+
