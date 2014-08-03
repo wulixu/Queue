@@ -12,8 +12,8 @@
 <h4>当前送货详细信息</h4>
 @if (Model != null)
 {
-        @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.QueueCallId)
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.QueueCallId)
     <dl class="dl-horizontal">
         <dt>
             二维码扫描：
@@ -26,6 +26,8 @@
             排队号：
         </dt>
         <dd>
+            <input id="queueNumStr" type="hidden" value="@Model.QueueNum" />
+            <input id="cardNumStr" type="hidden" value="@Model.QueueUser.IDCard.ToString()" />
             @Html.DisplayTextFor(model => model.QueueNum)
         </dd>
         <dt>
@@ -48,49 +50,49 @@
 
     @Html.ActionLink("过号", "Details", new { id = Model.ReceiveAreaId, methodName = "PassQueue", queueCallId = Model.QueueCallId, @class = "btn btn-primary btn-lg" })
     @Html.ActionLink("有问题的收料", "Details", new { id = Model.ReceiveAreaId, methodName = "Problematic", queueCallId = Model.QueueCallId })
-    @Html.ActionLink("正常收料(下一个)", "Details", new { id = Model.ReceiveAreaId, methodName = "NextQueue", queueCallId = Model.QueueCallId })
-}
+
+    <a id="ReceivingLink" style="display:none" href="/Receiver/ChoiceArea/Details?id=@Model.ReceiveAreaId&&methodName=NextQueue&&queueCallId=@Model.QueueCallId">正常收料(下一个)</a>
+    @*@Html.ActionLink("正常收料(下一个)", "Details", new { id = Model.ReceiveAreaId, methodName = "NextQueue", queueCallId = Model.QueueCallId })*@
+    }
 <script type="text/javascript">
     function EnterPress(e) { //传入 event
         var e = e || window.event;
-        if (e.keyCode == 13) {
-                var userCoderNum = document.getElementById("userCoderNum").value;
-                var idcardn=@Model.QueueUser.IDCard.Substring(Model.QueueUser.IDCard.Length - 7);
-                var queuenum=@Model.QueueNum;
-                var queLength= queuenum.toString.length;
-                if(queLength==1)
-                {
-                    queuenum="000"+queuenum;   
-                }else if(queLength==2){
-                    queuenum="00"+queuenum; 
-                }else if(queLength==3)
-                {
-                    queuenum="0"+queuenum
-                }
-            
-                var result=idcardn + queuenum;
-                alert("返回值"+result);
-                alert("二维码"+userCoderNum);
-
-                if(userCoderNum==result)
-                {
-                    $.ajax({
-
-                        type: "POST",
-
-                        url: "/ChoiceArea/Details",
-
-                        data: ("id=" + @Model.ReceiveAreaId + "&&methodName=startRecive&&queueCallId=" + @Model.QueueCallId ),
-
-                        success: function (sesponseTest) {
-
-                            $("#txt1").val(sesponseTest);
-                        }
-                    });
-                }else
-                {
-                    alert("请按照正确的排队号码进行收料！");
-                }
-            }
+        if (e.keyCode == 13)
+        {
+            cheackValue();
         }
+    }
+
+    function cheackValue() {
+        var userCoderNum = document.getElementById("userCoderNum").value;
+        var userQueueNum=document.getElementById("queueNumStr").value;
+        var cardNumStr=document.getElementById("cardNumStr").value;
+        var idcardn=cardNumStr.substr(cardNumStr.length-8,7);
+        var result=idcardn + userQueueNum;
+        alert("返回值"+result);
+        alert("二维码"+userCoderNum);
+
+        if(userCoderNum.indexOf(result)>-1)
+        {
+            document.getElementById("ReceivingLink").style.display = 'block';
+            $.ajax({
+
+                type: "POST",
+
+                url: "/ChoiceArea/Details",
+
+                data: ("id=" + @Model.ReceiveAreaId + "&&methodName=startRecive&&queueCallId=" + @Model.QueueCallId ),
+
+                success: function (sesponseTest) {
+
+                    $("#txt1").val(sesponseTest);
+                }
+            });
+        }
+        else
+        {
+            alert("请按照正确的排队号码进行收料！");
+        }
+    }
+
 </script>
