@@ -9,32 +9,39 @@
 <h2>
     选择当前你所在的收料区域
 </h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AreaName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            操作
-        </th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr class="table_box_head">
+                <th>
+                    @Html.DisplayNameFor(model => model.AreaName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AreaName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("进入", "Details", new { id = item.ReceiveAreaId, methodName = "firstQueue", queueCallId = 0 })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AreaName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("进入", "Details", new { id = item.ReceiveAreaId, methodName = "firstQueue", queueCallId = 0 }, new { @class = "btn btn-primary btn-sm", @role = "button" })
+                    </td>
+                </tr>
+            }
+        </tbody>
 
-</table>
+    </table>
+</div>
 @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })

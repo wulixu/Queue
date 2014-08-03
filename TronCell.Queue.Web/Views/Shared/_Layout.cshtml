@@ -1,52 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title 无锡创思感知排队叫号系统</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/themes/base/jquery.ui.all.css")
-    @Styles.Render("~/Content/themes/base/jquery.ui.datepicker.css")
-    @Scripts.Render("~/scripts/jquery-2.1.1.js")
-    @Scripts.Render("~/scripts/jquery-ui-1.8.24.js")
-    @Scripts.Render("~/scripts/jquery-ui-1.8.24.min.js")
-    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
-    @Scripts.Render("~/scripts/jqueryvalidate.min.js")
-
-</head>
-<body>
+﻿<!DOCTYPE html> <html> <head>     <meta charset="utf-8" />     <meta name="viewport" content="width=device-width, initial-scale=1.0">     <title>@ViewBag.Title 无锡创思感知排队叫号系统</title>     @Styles.Render("~/Content/css")     @Scripts.Render("~/bundles/modernizr")     @Styles.Render("~/Content/themes/base/jquery.ui.all.css")     @Styles.Render("~/Content/themes/base/jquery.ui.datepicker.css")     @Scripts.Render("~/scripts/jquery-2.1.1.js")     @Scripts.Render("~/scripts/jquery-ui-1.8.24.js")     @Scripts.Render("~/scripts/jquery-ui-1.8.24.min.js")     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")     @Scripts.Render("~/scripts/jqueryvalidate.min.js")  </head> <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("创思感知排队叫号系统", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>*@
-                @Html.Partial("_LoginPartial")
-            </div>
+        <div class="container top-height">
+            <div class="navbar-header top-height">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">                     <span class="icon-bar"></span>                     <span class="icon-bar"></span>                     <span class="icon-bar"></span>                 </button>
+                <a href="@Url.Action("Index", "Home", new { area = ""})" class="navbar-brand">
+                    <img src="~/Content/images/logo_inner.png" alt="创思感知排队系统" style="float:left;padding-top: 0px" />
+                    <p class="nav">创思感知排队叫号系统</p>
+
+                </a>
+            </div>             <div class="navbar-collapse collapse top-height">                 @*<ul class="nav navbar-nav">                     <li>@Html.ActionLink("Home", "Index", "Home")</li>                     <li>@Html.ActionLink("About", "About", "Home")</li>                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                 </ul>*@                 @Html.Partial("_LoginPartial")             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>Copyright &copy; @DateTime.Now.Year <a href="http://www.troncell.com">TronCell</a> Inc. All rights reserved.</p>
-
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+    </div>     <div class="container body-content">         @RenderBody()         <hr />         <footer>             <p>Copyright &copy; @DateTime.Now.Year <a href="http://www.troncell.com">TronCell</a> Inc. All rights reserved.</p>          </footer>     </div>      @Scripts.Render("~/bundles/jquery")     @Scripts.Render("~/bundles/bootstrap")     @RenderSection("scripts", required: false)
+</body> </html> 

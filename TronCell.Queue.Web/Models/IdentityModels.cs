@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Collections.Generic;
+using TronCell.Queue.Web.DAL;
 
 namespace TronCell.Queue.Web.Models
 {
@@ -61,7 +62,7 @@ namespace TronCell.Queue.Web.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer<ApplicationDbContext>(new CreateDatabaseIfNotExists<ApplicationDbContext>());
+            Database.SetInitializer<ApplicationDbContext>(new QueueInitializer());
         }
 
         public static ApplicationDbContext Create()

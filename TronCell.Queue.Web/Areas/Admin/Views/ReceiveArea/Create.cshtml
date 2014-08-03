@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<div class="updata_heade">添加新收料窗口</div>
 
 
 @using (Html.BeginForm()) 
@@ -13,37 +13,35 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ReceiveArea</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AreaName, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AreaName)
+            @Html.LabelFor(model => model.AreaName, new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.AreaName, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.AreaName)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Category)
+            @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Category, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Category)
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="确认添加" class="btn btn-default" />
+            <div class="col-md-offset-1 col-md-6">
+                <input type="submit" value="确认添加" class="btn btn-primary btn-block" />
             </div>
         </div>
     </div>

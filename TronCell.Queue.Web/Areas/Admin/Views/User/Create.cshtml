@@ -28,106 +28,116 @@
         $(".create_role_list").html(strHtml);
     }
 </script>
-<h2>添加新用户</h2>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true)
-        @Html.Hidden("Role")
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                用户名
-            </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName)
-                @Html.ValidationMessageFor(model => model.UserName)
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                真实姓名
-            </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TrueName)
-                @Html.ValidationMessageFor(model => model.TrueName)
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                用户角色
-            </div>
-            <div class="col-md-10">
-                <div class="create_role">
-                    <input class="login_role" type="text" name="roleName" value="请选择" />
-                    <ul class="create_role_list">
-                        <li>供应商</li>
-                        <li>买家</li>
-                    </ul>
+<div class="updata_heade">添加新用户</div>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            @Html.Hidden("Role")
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    用户名
                 </div>
-                @Html.ValidationMessageFor(model => model.Roles)
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.UserName,new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    真实姓名
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.TrueName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TrueName)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    用户角色
+                </div>
+                <div class="col-md-6">
+                    <div class="create_role">
+                        @*<select class="form-control" id="select">
+                            <option>供应商</option>
+                            <option>买家</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>*@
+                        <input class="login_role" type="text" name="roleName" value="请选择" />
+                        <ul class="create_role_list">
+                            <li>供应商</li>
+                            <li>买家</li>
+                        </ul>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Roles)
+                </div>
+            </div>
 
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                密码
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    密码
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.PasswordHash, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PasswordHash)
+                </div>
             </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PasswordHash)
-                @Html.ValidationMessageFor(model => model.PasswordHash)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                手机号码
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    手机号码
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </div>
             </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PhoneNumber)
-                @Html.ValidationMessageFor(model => model.PhoneNumber)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                身份证号码
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    身份证号码
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.IDCard, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDCard)
+                </div>
             </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IDCard)
-                @Html.ValidationMessageFor(model => model.IDCard)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                公司名称
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    公司名称
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CompanyName)
+                </div>
             </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyName)
-                @Html.ValidationMessageFor(model => model.CompanyName)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="control-label col-md-2">
-                车牌号
+            <div class="form-group">
+                <div class="control-label col-md-1">
+                    车牌号
+                </div>
+                @*@Html.LabelFor(model => model.CarNum, new { @class = "control-label col-md-2" })*@
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.CarNum, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CarNum)
+                </div>
             </div>
-            @*@Html.LabelFor(model => model.CarNum, new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CarNum)
-                @Html.ValidationMessageFor(model => model.CarNum)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="确认添加" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-1 col-md-6">
+                    <input type="submit" value="确认添加" class="btn btn-primary btn-block" />
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
+</div>
 
 <div>
     @Html.ActionLink("返回列表", "Index")
