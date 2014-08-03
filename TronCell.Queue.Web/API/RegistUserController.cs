@@ -17,7 +17,7 @@ namespace TronCell.Queue.Web.API
         /// <summary>
         /// 添加供应商用户信息
         /// </summary>
-        /// http://localhost:13352/api/RegistUser?userInfo=15161696372,周保光,320324199006140673
+        /// http://localhost:13352/api/RegistUser?userInfo=15161696372,zhou,320324199006140673
         /// success:用户信息登记成功
         /// error:用户登记失败
         /// error:用户已存在

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "TimeRefreshPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>
+    @ViewBag.valueAreaid 暂时没有送货，请等待！
+    <input id="jsq" type="text" />
+</h2>
+<script type="text/javascript">
+
+    function myrefresh() {
+        //window.location.reload();
+        window.location = "/Receiver/ChoiceArea/Details?id=" + @ViewBag.valueAreaid + "&&methodName=firstQueue&&queueCallId=0";
+
+
+    }
+    setTimeout('myrefresh()', 1000); //指定1秒刷新一次
+</script>
+@*<script type="text/javascript">
+        function myrefresh() {
+            $.ajax({
+
+                type: "POST",
+
+                url: "/ChoiceArea/Details",
+
+                data: ("id=" + @ViewBag.valueAreaid + "&&methodName=firstQueue&&queueCallId=0"),
+
+                success: function (sesponseTest) {
+
+                    $("#txt1").val(sesponseTest);
+                }
+            });
+        }
+        function myrefresh() {
+            @Html.Action("Details", new { id = @ViewBag.valueAreaid, methodName = "firstQueue", queueCallId = 0 });
+        }
+        setTimeout('myrefresh()', 1000); //指定1秒刷新一次
+    </script>*@
