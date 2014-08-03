@@ -411,6 +411,7 @@
     <Content Include="Content\First.less" />
     <Content Include="Content\bootswatch.less" />
     <Content Include="Content\variables.less" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\TimeRefreshPage.cshtml" />
     <None Include="Properties\PublishProfiles\QueueWeb.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
