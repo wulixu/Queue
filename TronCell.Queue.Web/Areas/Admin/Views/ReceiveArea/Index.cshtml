@@ -49,10 +49,16 @@
                 </td>
                 <td>
                     @Html.ActionLink("编辑", "Edit", new { id = item.ReceiveAreaId },new { @class = "btn btn-primary",@role="button"}) &nbsp;|&nbsp;
-                    @Html.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId }, new { @class = "btn btn-danger", @role = "button" })
+                    @*@Html.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId }, new { @class = "btn btn-danger", @role = "button" })*@
+                    @Ajax.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId },new AjaxOptions { HttpMethod = "POST", Confirm = "确定要删除该用户信息吗?", OnSuccess = "doSuccessDelete();" }, new { @class = "btn btn-danger", @role = "button" })
                 </td>
             </tr>
         }
     </tbody>
 </table>
 @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
+<script type="text/javascript">
+    function doSuccessDelete() {
+        location.reload();
+    }
+</script>
