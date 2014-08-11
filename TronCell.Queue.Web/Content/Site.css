@@ -157,11 +157,6 @@ html > body body{
 html > body img{
 	border:0px none;
 }
-a:link,a:visited{
-	color:#08338f;
-    text-decoration: none;
-	outline:none;
-}
 a:hover{
     color:#1048c0;
  	text-decoration:none;

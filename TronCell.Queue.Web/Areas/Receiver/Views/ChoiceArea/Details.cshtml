@@ -1,4 +1,5 @@
-﻿@model TronCell.Queue.Web.Models.QueueCall
+﻿@using System.Globalization
+@model TronCell.Queue.Web.Models.QueueCall
 
 @{
     ViewBag.Title = "当前收料信息";
@@ -12,48 +13,55 @@
 <h4>当前送货详细信息</h4>
 @if (Model != null)
 {
-    @Html.ValidationSummary(true)
-    @Html.HiddenFor(model => model.QueueCallId)
-    <dl class="dl-horizontal">
-        <dt>
-            二维码扫描：
-        </dt>
-        <dd>
-            <input id="userCoderNum" type="text" onkeypress="EnterPress(event)" />
-        </dd>
+    <div class="form-horizontal">
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.HiddenFor(model => Model.QueueCallId)
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                请扫描二维码:
+            </label>
+            <div class="col-md-10">
+                @Html.TextBox("userCoderNum", "", new { @class = "form-control", @onkeypress = "EnterPress(event)" })
+            </div>
+        </div>
 
-        <dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">
             排队号：
-        </dt>
-        <dd>
+            </label>
+            <div class="col-md-10">
             <input id="queueNumStr" type="hidden" value="@Model.QueueNum" />
-            <input id="cardNumStr" type="hidden" value="@Model.QueueUser.IDCard.ToString()" />
-            @Html.DisplayTextFor(model => model.QueueNum)
-        </dd>
-        <dt>
-            送货人：
-        </dt>
+                <input id="cardNumStr" type="hidden" value="@Model.QueueUser.IDCard" />
+                <label class="col-md-10 control-label">@Model.QueueNum</label>
+            </div>
+        </div>
 
-        <dd>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                送货人：
+            </label>
+            <label class="col-md-10 control-label">
             @Html.DisplayTextFor(model => model.QueueUser.UserName)
-        </dd>
+            </label>
+        </div>
 
-        <dt>
-            手机号码：
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.QueueUser.PhoneNumber)
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">
+                手机号：
+            </label>
+            <label class="col-md-10 control-label">
+                @Html.DisplayTextFor(model => model.QueueUser.PhoneNumber)
+            </label>
+        </div>
+        <div class="col-md-offset-2 col-md-8">
+            @Html.ActionLink("过号", "Details", new { id = Model.ReceiveAreaId, methodName = "PassQueue", queueCallId = Model.QueueCallId }, new { @class = "btn btn-default" })
+            @Html.ActionLink("有问题的收料", "Details", new { id = Model.ReceiveAreaId, methodName = "Problematic", queueCallId = Model.QueueCallId }, new { @class = "btn btn-danger" })
+            <a id="ReceivingLink" class="btn btn-primary invisible" role="button" href="/Receiver/ChoiceArea/Details?id=@Model.ReceiveAreaId&&methodName=NextQueue&&queueCallId=@Model.QueueCallId">正常收料(下一个)</a>
+        </div>
+    </div>
 
-    </dl>
-
-    @Html.ActionLink("过号", "Details", new { id = Model.ReceiveAreaId, methodName = "PassQueue", queueCallId = Model.QueueCallId, @class = "btn btn-primary btn-lg" })
-    @Html.ActionLink("有问题的收料", "Details", new { id = Model.ReceiveAreaId, methodName = "Problematic", queueCallId = Model.QueueCallId })
-
-    <a id="ReceivingLink" style="display:none" href="/Receiver/ChoiceArea/Details?id=@Model.ReceiveAreaId&&methodName=NextQueue&&queueCallId=@Model.QueueCallId">正常收料(下一个)</a>
-    @*@Html.ActionLink("正常收料(下一个)", "Details", new { id = Model.ReceiveAreaId, methodName = "NextQueue", queueCallId = Model.QueueCallId })*@
-}
 <script type="text/javascript">
     function EnterPress(e) { //传入 event
         var e = e || window.event;
@@ -64,22 +72,22 @@
     }
 
     function cheackValue() {
-        var userCoderNum = document.getElementById("userCoderNum").value;
+            var userCoderNum = document.getElementById('userCoderNum').value;
         var userQueueNum=document.getElementById("queueNumStr").value;
         var cardNumStr=document.getElementById("cardNumStr").value;
-        var idcardn=cardNumStr.substr(cardNumStr.length-8,7);
+            var idcardn=cardNumStr.substr(cardNumStr.length-8,8);
         var result=idcardn + userQueueNum;
 
-        if(userCoderNum.indexOf(result)>-1)
-        {
-            document.getElementById("ReceivingLink").style.display = 'block';
+            if(userCoderNum.indexOf(result)>-1) {
+                $('#ReceivingLink').removeClass("invisible");
+                //document.getElementById("ReceivingLink").removeClass("invisible");
             $.ajax({
 
                 type: "POST",
 
                 url: "/ChoiceArea/Details",
 
-                data: ("id=" + @Model.ReceiveAreaId + "&&methodName=startRecive&&queueCallId=" + @Model.QueueCallId ),
+                    data: ("id=" + @Model.ReceiveAreaId + "&&methodName=startRecive&&queueCallId=" + @Model.QueueCallId.ToString(CultureInfo.InvariantCulture)) ,
 
                 success: function (sesponseTest) {
 
@@ -90,16 +98,4 @@
         else
         {
             alert("请按照正确的排队号码进行收料！");
-        }
-    }
-
-</script>
-@*<script type="text/javascript" language=JavaScript charset="UTF-8">
-    document.onkeydown=function(event){
-        var e = event || window.event || arguments.callee.caller.arguments[0];
-        if(e && e.keyCode==116){
-            alert("/Receiver/ChoiceArea/Details?id=" + @Model.ReceiveArea.ReceiveAreaId + "&methodName=JumpRecive&queueCallId=" + @Model.QueueUser.Id + "");
-            window.location.href = "/Receiver/ChoiceArea/Details?id=" + @Model.ReceiveArea.ReceiveAreaId + "&methodName=JumpRecive&queueCallId=" + @Model.QueueUser.Id + "";
-        }
-    };
-</script>*@
+      

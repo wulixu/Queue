@@ -12,7 +12,6 @@
     @Scripts.Render("~/scripts/jquery-ui-1.8.24.min.js")
     @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
     @Scripts.Render("~/scripts/jqueryvalidate.min.js")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,11 +41,12 @@
         <div id="divEdit" style="width: 800px;"></div>
     <div class="container body-content">
         @RenderBody()
+        <div style="float: left">
         <hr />
         <footer>
             <p>Copyright &copy; @DateTime.Now.Year <a href="http://www.troncell.com">TronCell</a> Inc. All rights reserved.</p>
-
         </footer>
+    </div>
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")*@
