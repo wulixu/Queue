@@ -97,7 +97,7 @@ namespace TronCell.Queue.Web.API
                 }
                 string numCount = (queue - min).ToString();
                 string trueName = reservations[0].TrueName;
-                var passCode = reservations[0].IDCard.Substring(reservations[0].IDCard.Length - 8,7).ToString() + result;
+                var passCode = reservations[0].IDCard.Substring(reservations[0].IDCard.Length - 8,8).ToString() + result;
                 result = result + "," + "前面还有" + numCount + "个用户排队等待," + passCode + "," + trueName;
                 return result;
             }
