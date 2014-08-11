@@ -15,13 +15,11 @@
         @Html.HiddenFor(model => model.UserName)
         @Html.HiddenFor(model => model.CreatedTime)
         @Html.HiddenFor(model => model.SecurityStamp)
-
-        
         <div class="form-group">
            
             <div class="control-label col-md-2">真实姓名</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TrueName)
+                @Html.EditorFor(model => model.TrueName, new { htmlAttributes = new { @class = "form-control" }})
                 @Html.ValidationMessageFor(model => model.TrueName)
             </div>
         </div>
@@ -29,7 +27,7 @@
         <div class="form-group">
             <div class="control-label col-md-2">手机号码</div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhoneNumber)
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PhoneNumber)
             </div>
         </div>
@@ -39,7 +37,7 @@
                 身份证号码
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IDCard)
+                @Html.EditorFor(model => model.IDCard, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IDCard)
             </div>
         </div>
@@ -48,7 +46,7 @@
                 公司名称
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyName)
+                @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CompanyName)
             </div>
         </div>
@@ -57,7 +55,7 @@
                 车牌号码
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CarNum)
+                @Html.EditorFor(model => model.CarNum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CarNum)
             </div>
         </div>
@@ -66,13 +64,13 @@
                 密码
             </div>
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.PasswordHash)
+                @Html.PasswordFor(model => model.PasswordHash, new {  @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PasswordHash)
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="确认修改" class="btn btn-default" />
+                <input type="submit" value="确认修改" class="btn btn-primary" />
             </div>
         </div>
     </div>

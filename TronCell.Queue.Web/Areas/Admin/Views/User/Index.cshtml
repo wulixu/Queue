@@ -7,7 +7,7 @@
 }
 <div class="row">
     @Html.Partial("AdminTabView")
-    <div class="col-md-2" style="float: right">
+    <div class="col-md-2" style="float: right; margin: 5px 0px">
         @Html.ActionLink("添加新用户", "Create", null, new { @class = "btn btn-primary btn-block" })
     </div>
     <div class="table-responsive">
@@ -61,8 +61,8 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("编辑", "Edit", new { id = item.Id }) |
-                            @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions { HttpMethod = "POST", Confirm = "确定要删除该用户信息吗?", OnSuccess = "doSuccessDelete();" })
+                            @Html.ActionLink("编辑", "Edit", new { id = item.Id },new {@class="btn-primary btn-sm"}) |
+                            @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions { HttpMethod = "POST", Confirm = "确定要删除该用户信息吗?", OnSuccess = "doSuccessDelete();" },new {@class="btn-danger btn-sm"})
                         </td>
                     </tr>
                 }
