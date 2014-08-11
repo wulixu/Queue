@@ -8,7 +8,8 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 @*@Html.RouteLink("欢迎： " + User.Identity.GetUserName() + "!", "Default",new { action = "Details", controller = "Account" })*@
-                @Html.ActionLink("欢迎： " + User.Identity.GetUserName() + "!", "Details", "Account", new { area = "" }, null)
+                @Html.ActionLink("欢迎： " + User.Identity.GetUserName() + "!", "Edit", "Account", new { area = "" }, null)
+                @*@Ajax.ActionLink("欢迎： " + User.Identity.GetUserName() + "!", "Edit", "Account", new { area = "" }, new AjaxOptions { UpdateTargetId = "divEdit", OnFailure = "doError();", OnSuccess = "doSuccess();" })*@
                 @*@Html.ActionLink("欢迎： " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })*@
             </li>
             <li><a href="javascript:document.getElementById('logoutForm').submit()">退出</a></li>
@@ -22,3 +23,14 @@ else
         <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+<script type="text/javascript">
+    function doSuccess() {
+        $("#divEdit").dialog({
+            modal: true,
+            width: 490,
+            height: 550,
+            //resizable: false,
+            //draggable: false
+        });
+    }
+</script>

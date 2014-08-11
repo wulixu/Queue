@@ -130,8 +130,11 @@ namespace TronCell.Queue.Web.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    PasswordHasher ph = new PasswordHasher();
+                    var userpassword = ph.HashPassword(user.PasswordHash);
+                    user.PasswordHash = userpassword;
                     db.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 return View(user);

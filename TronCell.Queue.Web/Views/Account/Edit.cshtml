@@ -3,58 +3,109 @@
     ViewBag.Title = "用户信息";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
 
-<div class="updata_heade">用户个人信息</div>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            用户名
-        </dt>
-        <dd>
-            @Html.TextBoxFor(model => model.UserName, new { @class = "login_kw" })
-            @Html.ValidationMessageFor(model => model.UserName)
-        </dd>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateProduct</title>
+    </head>
+<body>
+    <div class="updata_heade">用户个人信息</div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <dt>
-           真实姓名
-        </dt>
-        <dd>
-            @Html.TextBoxFor(model => model.TrueName, new { @class = "login_kw" })
-            @Html.ValidationMessageFor(model => model.TrueName)
-        </dd>
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.UserName)
+            @Html.HiddenFor(model => model.CreatedTime)
+            @Html.HiddenFor(model => model.SecurityStamp)
 
-        <dt>
-         手机号码   
-        </dt>
-        <dd>
-            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "login_kw" })
-            @Html.ValidationMessageFor(model => model.PhoneNumber)
-        </dd>
+            <div class="form-group">
+                <div class="control-label col-md-2">真实姓名</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TrueName)
+                    @Html.ValidationMessageFor(model => model.TrueName)
+                </div>
+            </div>
 
-        <dt>
-            身份证号码
-        </dt>
-        <dd>
-            @Html.TextBoxFor(model => model.IDCard, new { @class = "login_kw" })
-            @Html.ValidationMessageFor(model => model.IDCard)
-        </dd>
+            <div class="form-group">
+                <div class="control-label col-md-2">手机号码</div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PhoneNumber)
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </div>
+            </div>
 
-        <dt>
-            公司名称
-        </dt>
-        <dd>
-            @Html.TextBoxFor(model => model.CompanyName, new { @class = "login_kw" })
-            @Html.ValidationMessageFor(model => model.CompanyName)
-        </dd>
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    身份证号码
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IDCard)
+                    @Html.ValidationMessageFor(model => model.IDCard)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    公司名称
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CompanyName)
+                    @Html.ValidationMessageFor(model => model.CompanyName)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    车牌号码
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CarNum)
+                    @Html.ValidationMessageFor(model => model.CarNum)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    密码
+                </div>
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.PasswordHash)
+                    @Html.ValidationMessageFor(model => model.PasswordHash)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="确认修改"  class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
 
-        <dt>
-            车牌号
-        </dt>
-        <dd>
-            @Html.TextBoxFor(model => model.CarNum, new { @class = "login_kw" })
-            @Html.ValidationMessageFor(model => model.CarNum)
-        </dd>
-    </dl>
-</div>
-@Html.ActionLink("返回首页", "Index", "Home")
+
+    @*<script type="text/javascript">
+        function DoCreate() {
+            $.ajax({
+                cache: true,
+                async: false,
+                url: '@Url.Action("Create")',
+                type: "post",
+                data: $('#CreateUserForm').serialize(),
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.responseText);
+                },
+                success: function (response) {
+                    if (response.result) {
+                        location.reload();
+                    }
+                    else {
+                        $("#divEdit").html(response);
+                    }
+                }
+            });
+        }
+    </script>*@
+    </body>
+</html>

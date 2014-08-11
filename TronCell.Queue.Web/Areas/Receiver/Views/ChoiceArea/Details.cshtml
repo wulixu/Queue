@@ -53,7 +53,7 @@
 
     <a id="ReceivingLink" style="display:none" href="/Receiver/ChoiceArea/Details?id=@Model.ReceiveAreaId&&methodName=NextQueue&&queueCallId=@Model.QueueCallId">正常收料(下一个)</a>
     @*@Html.ActionLink("正常收料(下一个)", "Details", new { id = Model.ReceiveAreaId, methodName = "NextQueue", queueCallId = Model.QueueCallId })*@
-    }
+}
 <script type="text/javascript">
     function EnterPress(e) { //传入 event
         var e = e || window.event;
@@ -69,8 +69,6 @@
         var cardNumStr=document.getElementById("cardNumStr").value;
         var idcardn=cardNumStr.substr(cardNumStr.length-8,7);
         var result=idcardn + userQueueNum;
-        alert("返回值"+result);
-        alert("二维码"+userCoderNum);
 
         if(userCoderNum.indexOf(result)>-1)
         {
@@ -96,3 +94,12 @@
     }
 
 </script>
+@*<script type="text/javascript" language=JavaScript charset="UTF-8">
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==116){
+            alert("/Receiver/ChoiceArea/Details?id=" + @Model.ReceiveArea.ReceiveAreaId + "&methodName=JumpRecive&queueCallId=" + @Model.QueueUser.Id + "");
+            window.location.href = "/Receiver/ChoiceArea/Details?id=" + @Model.ReceiveArea.ReceiveAreaId + "&methodName=JumpRecive&queueCallId=" + @Model.QueueUser.Id + "";
+        }
+    };
+</script>*@

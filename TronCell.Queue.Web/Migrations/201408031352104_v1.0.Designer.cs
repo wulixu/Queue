@@ -13,7 +13,7 @@ namespace TronCell.Queue.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201408011604029_v1.0"; }
+            get { return "201408031352104_v1.0"; }
         }
         
         string IMigrationMetadata.Source

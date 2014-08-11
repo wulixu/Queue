@@ -14,6 +14,7 @@ using TronCell.Queue.Web;
 using TronCell.Queue.Web.Models;
 using Microsoft.Practices.ServiceLocation;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 
 namespace TronCell.Queue.Web.Controllers
 {
@@ -147,15 +148,11 @@ namespace TronCell.Queue.Web.Controllers
         {
             var userId = User.Identity.GetUserId();
             ApplicationUser userprofile = UserManager.FindById(userId);
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(userprofile);
-            }
             if (userprofile == null)
             {
                 return HttpNotFound();
             }
-            return View();
+            return View(userprofile);
         }
 
         //
@@ -165,16 +162,55 @@ namespace TronCell.Queue.Web.Controllers
         public ActionResult Edit(ApplicationUser userprofile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(userprofile).State = EntityState.Modified;
-                db.SaveChanges();
-                return this.Json(new { result = true });
+                if (ModelState.IsValid)
+                {
+                    PasswordHasher ph = new PasswordHasher();
+                    var userpassword = ph.HashPassword(userprofile.PasswordHash);
+                    userprofile.PasswordHash = userpassword;
+                    db.Entry(userprofile).State = EntityState.Modified;
+                    db.SaveChanges();
+                    
+                    var roles=UserManager.GetRoles(userprofile.Id);
+                    string userole="";
+                    if (roles != null&&roles.Count>0)
+                    {
+                        userole = roles[0].ToString();
+                    }
+
+                    if (userole.Contains("Admin"))
+                    {
+                        return RedirectToAction("Index", "Admin/User");
+                    }
+                    else if (userole.Contains("Manager"))
+                    {
+                        return RedirectToAction("Index", "Manager/QueueCall");
+                    }
+                    else if (userole.Contains("Receiver"))
+                    {
+                        return RedirectToAction("Index", "Receiver/ChoiceArea");
+                    }
+                    else if (userole.Contains("Supplier"))
+                    {
+                        return RedirectToAction("Index", "Home", new { area = "" });
+                    }
+                    return RedirectToAction("Index");
+                }
+                return View(userprofile);
             }
-            if (Request.IsAjaxRequest())
-                return PartialView(userprofile);
-            return View(userprofile);
+            catch (DbEntityValidationException dbEx)
+            {
+                var errStr = dbEx.Message;
+               return View(userprofile);
+            }
+            catch (Exception ex) {
+                var errStr = ex.Message;
+                return View(userprofile);
+            }
+
         }
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
