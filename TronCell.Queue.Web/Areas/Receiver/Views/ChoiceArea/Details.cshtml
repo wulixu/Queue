@@ -27,10 +27,10 @@
 
         <div class="form-group">
             <label class="control-label col-md-2">
-            排队号：
+                排队号：
             </label>
             <div class="col-md-10">
-            <input id="queueNumStr" type="hidden" value="@Model.QueueNum" />
+                <input id="queueNumStr" type="hidden" value="@Model.QueueNum" />
                 <input id="cardNumStr" type="hidden" value="@Model.QueueUser.IDCard" />
                 <label class="col-md-10 control-label">@Model.QueueNum</label>
             </div>
@@ -42,7 +42,7 @@
                 送货人：
             </label>
             <label class="col-md-10 control-label">
-            @Html.DisplayTextFor(model => model.QueueUser.UserName)
+                @Html.DisplayTextFor(model => model.QueueUser.UserName)
             </label>
         </div>
 
@@ -62,40 +62,43 @@
         </div>
     </div>
 
-<script type="text/javascript">
-    function EnterPress(e) { //传入 event
-        var e = e || window.event;
-        if (e.keyCode == 13)
-        {
-            cheackValue();
+    <script type="text/javascript">
+        function EnterPress(e) { //传入 event
+            var e = e || window.event;
+            if (e.keyCode == 13)
+            {
+                cheackValue();
+            }
         }
-    }
 
-    function cheackValue() {
+        function cheackValue() {
             var userCoderNum = document.getElementById('userCoderNum').value;
-        var userQueueNum=document.getElementById("queueNumStr").value;
-        var cardNumStr=document.getElementById("cardNumStr").value;
-            var idcardn=cardNumStr.substr(cardNumStr.length-8,8);
-        var result=idcardn + userQueueNum;
+            var userQueueNum=document.getElementById("queueNumStr").value;
+            var cardNumStr=document.getElementById("cardNumStr").value;
+            var idcardn=cardNumStr.substr(cardNumStr.length-8,7);
+            var result=idcardn + userQueueNum;
 
             if(userCoderNum.indexOf(result)>-1) {
                 $('#ReceivingLink').removeClass("invisible");
                 //document.getElementById("ReceivingLink").removeClass("invisible");
-            $.ajax({
+                $.ajax({
 
-                type: "POST",
+                    type: "POST",
 
-                url: "/ChoiceArea/Details",
+                    url: "/ChoiceArea/Details",
 
                     data: ("id=" + @Model.ReceiveAreaId + "&&methodName=startRecive&&queueCallId=" + @Model.QueueCallId.ToString(CultureInfo.InvariantCulture)) ,
 
-                success: function (sesponseTest) {
+                    success: function (sesponseTest) {
 
-                    $("#txt1").val(sesponseTest);
-                }
-            });
+                        $("#txt1").val(sesponseTest);
+                    }
+                });
+            }
+            else
+            {
+                alert("请按照正确的排队号码进行收料！");
+            }
         }
-        else
-        {
-            alert("请按照正确的排队号码进行收料！");
-      
+    </script>
+}
