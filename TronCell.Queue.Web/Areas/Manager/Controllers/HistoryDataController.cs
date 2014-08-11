@@ -17,8 +17,8 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         {
             try
             {
-                var model = db.Queues.AsQueryable().Where(q => q.Deleted == false && q.State == TronCell.Queue.Web.Models.ProcessStatus.Processed && q.State != TronCell.Queue.Web.Models.ProcessStatus.GotQueueNumber
-                    && q.State != TronCell.Queue.Web.Models.ProcessStatus.Processing && q.State != TronCell.Queue.Web.Models.ProcessStatus.LazyProcess).OrderBy(q => q.CreateTime).ToPagedList(indexPage, 10);
+                var model = db.Queues.AsQueryable().Where(q => (q.State != TronCell.Queue.Web.Models.ProcessStatus.LazyProcess || q.State == TronCell.Queue.Web.Models.ProcessStatus.Processed) && q.State != TronCell.Queue.Web.Models.ProcessStatus.GotQueueNumber
+                    && q.State != TronCell.Queue.Web.Models.ProcessStatus.Processing ).OrderBy(q => q.CreateTime).ToPagedList(indexPage, 10);
                 return View(model);
             }
             catch (Exception ex)
