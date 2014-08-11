@@ -74,7 +74,7 @@ namespace TronCell.Queue.Web.Areas.Receiver.Controllers
                             }
                             queEntity.ReceiveArea = receivearea;
                             var strContent = string.Format("顾客您好，请到{0}进行收料！", receivearea.AreaName.ToString());
-                            //sendSMS(queEntity.QueueUser.PhoneNumber, strContent);
+                            sendSMS(queEntity.QueueUser.PhoneNumber, strContent);
                             if (query.Count > 0)
                             {
                                 queEntity.OperationId = query[0].Id;
