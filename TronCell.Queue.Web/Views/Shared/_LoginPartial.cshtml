@@ -18,10 +18,21 @@
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("送货人员登记", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    if (ViewContext.RouteData.Values["controller"].ToString() == "Home")
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("送货人员登记", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @style="color:#000" })</li>
+            <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @style = "color:#000" })</li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("送货人员登记", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        </ul>
+    }
+
 }
 <script type="text/javascript">
     function doSuccess() {

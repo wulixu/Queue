@@ -9,7 +9,7 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>@ViewBag.Title 无锡创思感知排队叫号系统</title>
+        <title>@ViewBag.Title 创思感知排队叫号系统</title>
         <style type="text/css">.home { color: black; }</style>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
@@ -33,7 +33,7 @@
                     </button>
                     <a href="@Url.Action("Index", "Home", new { area = ""})" class="navbar-brand">
                         <img src="~/Content/images/logo.png" alt="创思感知排队系统" style="float:left;padding-top: 0px" />
-                        <p class="nav home" style="float:right;padding-top: 0px">创思感知排队叫号系统</p>
+                        <p class="nav home" style="float:right;padding-top: 0px">尚科创思排队叫号系统</p>
 
                     </a>
                 </div>
@@ -49,8 +49,8 @@
         </div>
         <div class="body-content">
     @*<div class="jumbotron">*@
-    <div class="banner" style="background-position: -8.5px;">
-        <div class="banner_main"><a href="@Url.Action("Register" , "Account",new { id="registerLink" })"></a></div>
+    <div class="banner">
+        <div class="banner_main"><a href="@Url.Action("Register" , "Account",new { id="registerLink" })"><img src="~/Content/images/register_provider.png"/></a></div>
     </div>
 
     <div class="about">
@@ -89,10 +89,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     <script type="text/javascript">
         $(function () {
-            $winwidth = $(window).width();
-            if ($winwidth <= 1920) { $left = -(1920 - $winwidth) / 2 }
-            $cssleft = "url(images/banner.jpg) no-repeat " + $left + "px top;";
-            $(".banner").css({ "background-position": $left });
             $(".read_more").click(function () {
                 if ($(this).text() == "阅读全部") {
                     $(".intro_main p").css({ "height": "120px" });

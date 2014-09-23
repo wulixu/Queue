@@ -20,7 +20,7 @@
 .banner {
     height: 458px;
     width: 100%;
-    background: url(images/banner.jpg);
+    background: url(images/banner_bg.jpg) no-repeat center 0;
     background-repeat: no-repeat;
 }
 .banner_main {
@@ -30,11 +30,11 @@
 }
     .banner_main a {
         display: block;
-        width: 382px;
-        height: 56px;
-        left: 84px;
-        top: 302px;
-        position: absolute;
+        width: 300px;
+        height: 80px;
+        left: 145px;
+        top: 300px;
+        position: relative;
     }
 .form-horizontal .control-label {
     text-align: left;
