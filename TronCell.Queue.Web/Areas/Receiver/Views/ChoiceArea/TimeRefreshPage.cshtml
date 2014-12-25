@@ -4,16 +4,32 @@
 }
 
 <h2>
-    @ViewBag.valueAreaid 暂时没有送货，请等待！
-    <input id="jsq" type="text" />
+     暂时没有送货，请等待！
 </h2>
+
 <script type="text/javascript">
-
+    //window.onload = myrefresh();
+    var result = false;
     function myrefresh() {
-        //window.location.reload();
-        window.location = "/Receiver/ChoiceArea/Details?id=" + @ViewBag.valueAreaid + "&&methodName=firstQueue&&queueCallId=0";
+        $.ajax({
 
+            type: "POST",
 
+            url: "/Receiver/ChoiceArea/Details",
+
+            data: ("id=" + @ViewBag.valueAreaid + "&&methodName=firstQueue&&queueCallId=0"),
+
+            success: function (response) {
+                if (response.result) {
+                    myrefresh();
+                    @*location.href = @Html.ActionLink("点击获取排队信息", "Details", "ChoiceArea", new { area = "Receiver" }, new { id = 1, methodName = "firstQueue", queueCallId = 0 });*@
+                    @*window.location.href = "/Receiver/ChoiceArea/Details?id=" + @ViewBag.valueAreaid + "&&methodName=firstQueue&&queueCallId=0";*@
+                }
+                else {
+                    window.location.href = "/Receiver/ChoiceArea/Details?id=" + response.areaid + "&methodName=JumpRecive&queueCallId=" + response.queuecallid + "";
+                }
+            }
+        });
     }
     setTimeout('myrefresh()', 1000); //指定1秒刷新一次
 </script>

@@ -261,17 +261,17 @@
     </Compile>
     <Compile Include="Helper\EnumCOM.cs" />
     <Compile Include="Helper\SendMSS.cs" />
-    <Compile Include="Migrations\201408031352104_v1.0.cs" />
-    <Compile Include="Migrations\201408031352104_v1.0.Designer.cs">
-      <DependentUpon>201408031352104_v1.0.cs</DependentUpon>
+    <Compile Include="Migrations\201411140340188_version1.0.cs" />
+    <Compile Include="Migrations\201411140340188_version1.0.Designer.cs">
+      <DependentUpon>201411140340188_version1.0.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201408050203475_v1.1.cs" />
-    <Compile Include="Migrations\201408050203475_v1.1.Designer.cs">
-      <DependentUpon>201408050203475_v1.1.cs</DependentUpon>
+    <Compile Include="Migrations\201411140341561_version1.1.cs" />
+    <Compile Include="Migrations\201411140341561_version1.1.Designer.cs">
+      <DependentUpon>201411140341561_version1.1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201408050648507_v1.2.cs" />
-    <Compile Include="Migrations\201408050648507_v1.2.Designer.cs">
-      <DependentUpon>201408050648507_v1.2.cs</DependentUpon>
+    <Compile Include="Migrations\201411140900131_version2.0.cs" />
+    <Compile Include="Migrations\201411140900131_version2.0.Designer.cs">
+      <DependentUpon>201411140900131_version2.0.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -297,6 +297,7 @@
     <Content Include="Content\images\action.jpg" />
     <Content Include="Content\images\admin_setting_icon.jpg" />
     <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\banner_bg.jpg" />
     <Content Include="Content\images\buyer-chart_data.jpg" />
     <Content Include="Content\images\buyer-chart_pie.jpg" />
     <Content Include="Content\images\buyer-chart_plotting.jpg" />
@@ -321,6 +322,7 @@
     <Content Include="Content\images\mainmenu_bg.jpg" />
     <Content Include="Content\images\message_icon.jpg" />
     <Content Include="Content\images\process.jpg" />
+    <Content Include="Content\images\register_provider.png" />
     <Content Include="Content\images\savebg.jpg" />
     <Content Include="Content\images\sing_icon.jpg" />
     <Content Include="Content\images\Supplier_rili.jpg" />
@@ -425,15 +427,23 @@
     <Content Include="Areas\Admin\Views\ReceiveArea\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ReceiveArea\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ReceiveArea\Index.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\AreaWharfs.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\HardwareReceiveArea.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\Edit.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\ElectronicReceiveArea.cshtml" />
+    <Content Include="Areas\Receiver\Views\ChoiceArea\IsProblemReceiver.cshtml" />
+    <Content Include="Areas\Manager\Views\HistoryData\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\QueueWeb.pubxml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -468,7 +478,9 @@
     <Content Include="style\images\time_icon.jpg" />
     <Content Include="style\images\top_bg.jpg" />
     <Content Include="style\style.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -516,14 +528,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408031352104_v1.0.resx">
-      <DependentUpon>201408031352104_v1.0.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411140340188_version1.0.resx">
+      <DependentUpon>201411140340188_version1.0.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408050203475_v1.1.resx">
-      <DependentUpon>201408050203475_v1.1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411140341561_version1.1.resx">
+      <DependentUpon>201411140341561_version1.1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408050648507_v1.2.resx">
-      <DependentUpon>201408050648507_v1.2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411140900131_version2.0.resx">
+      <DependentUpon>201411140900131_version2.0.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

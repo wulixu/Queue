@@ -28,11 +28,11 @@ namespace TronCell.Queue.Web.API
                 DateTime tomorrow = today.AddDays(1);
                 var querylist = (from p in db.Queues
                                  where p.QueueNum != null && p.CreateTime >= today && p.CreateTime < tomorrow && (p.State == ProcessStatus.GotQueueNumber || p.State == ProcessStatus.Processing) && p.State != ProcessStatus.Processed && p.State != ProcessStatus.NoQueueNumber && p.State != ProcessStatus.LazyProcess && p.Deleted == false
-                                 select new { p.QueueCallId, p.QueueNum ,p.ReceiveArea.AreaName, p.State, p.Priority }).OrderBy(w => w.Priority).ThenBy(v => v.QueueNum).ToList();
+                                 select new { p.QueueCallId, p.QueueNum,p.Wharfs ,p.ReceiveArea.AreaName, p.State, p.Priority }).OrderBy(w => w.Priority).ThenBy(v => v.QueueNum).ToList();
                 string response = "";
                 foreach (var item in querylist)
                 {
-                    response += item.QueueCallId.ToString() + "," + item.AreaName + "," + EnumCOM.GetEnumDispalyName(item.State) + "," + item.QueueNum + "|";
+                    response += item.QueueCallId.ToString() + "," + EnumCOM.GetEnumDispalyName(item.Wharfs) + item.AreaName + "," + EnumCOM.GetEnumDispalyName(item.State) + "," + item.QueueNum + "|";
                 }
                 if (!string.IsNullOrEmpty(response))
                 {

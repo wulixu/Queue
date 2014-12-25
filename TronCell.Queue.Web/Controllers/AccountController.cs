@@ -97,7 +97,8 @@ namespace TronCell.Queue.Web.Controllers
                 // If we got this far, something failed, redisplay form
                 return View(model);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return View(model);
             }
         }
@@ -119,7 +120,7 @@ namespace TronCell.Queue.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName,TrueName=model.TrueName, IDCard = model.IDCard, PhoneNumber = model.PhoneNumber, CompanyName = model.CompanyName, CreatedTime = DateTime.Now, Deleted = false };
+                var user = new ApplicationUser() { UserName = model.IDCard, TrueName = model.TrueName, IDCard = model.IDCard, PhoneNumber = model.PhoneNumber, CompanyName = model.CompanyName, CreatedTime = DateTime.Now, Deleted = false };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -136,7 +137,7 @@ namespace TronCell.Queue.Web.Controllers
                 }
                 else
                 {
-                    AddErrors(result);
+                    ModelState.AddModelError("", "用户身份证" + model.IDCard + "是无效的，或者已存在");
                 }
             }
 
@@ -166,15 +167,19 @@ namespace TronCell.Queue.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    PasswordHasher ph = new PasswordHasher();
-                    var userpassword = ph.HashPassword(userprofile.PasswordHash);
-                    userprofile.PasswordHash = userpassword;
+                    var pasValue = Request.Params["passwordValue"].ToString();
+                    if (pasValue != userprofile.PasswordHash)
+                    {
+                        PasswordHasher ph = new PasswordHasher();
+                        var userpassword = ph.HashPassword(userprofile.PasswordHash);
+                        userprofile.PasswordHash = userpassword;
+                    }
                     db.Entry(userprofile).State = EntityState.Modified;
                     db.SaveChanges();
-                    
-                    var roles=UserManager.GetRoles(userprofile.Id);
-                    string userole="";
-                    if (roles != null&&roles.Count>0)
+
+                    var roles = UserManager.GetRoles(userprofile.Id);
+                    string userole = "";
+                    if (roles != null && roles.Count > 0)
                     {
                         userole = roles[0].ToString();
                     }
@@ -202,12 +207,42 @@ namespace TronCell.Queue.Web.Controllers
             catch (DbEntityValidationException dbEx)
             {
                 var errStr = dbEx.Message;
-               return View(userprofile);
+                return View(userprofile);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 var errStr = ex.Message;
                 return View(userprofile);
             }
+
+        }
+        public ActionResult FogiveEdit(string id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var roles = UserManager.GetRoles(id);
+            string userole = "";
+            if (roles != null && roles.Count > 0)
+            {
+                userole = roles[0].ToString();
+            }
+
+            if (userole.Contains("Admin"))
+            {
+                return RedirectToAction("Index", "Admin/User");
+            }
+            else if (userole.Contains("Manager"))
+            {
+                return RedirectToAction("Index", "Manager/QueueCall");
+            }
+            else if (userole.Contains("Receiver"))
+            {
+                return RedirectToAction("Index", "Receiver/ChoiceArea");
+            }
+            else if (userole.Contains("Supplier"))
+            {
+                return RedirectToAction("Index", "Home", new { area = "" });
+            }
+            return RedirectToAction("Index");
 
         }
 

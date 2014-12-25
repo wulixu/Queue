@@ -1,9 +1,102 @@
-﻿
+﻿@using Webdiyer.WebControls.Mvc;
+@model PagedList<TronCell.Queue.Web.Models.QueueCall>
 @{
     ViewBag.Title = "收货历史";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.CurrentTab = "HistoryTab";
 }
 @Html.Partial("ReceiverTabView")
-<h2>尚未开通此功能</h2>
 
+<script src="~/scripts/jquery-2.1.1.js"></script>
+<script src="~/scripts/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#stratDt").datepicker({ dateFormat: "yy-mm-dd" });
+        $("#endDt").datepicker({ dateFormat: "yy-mm-dd" });
+    });
+
+    function doSelect() {
+        var _startDate = $("#stratDt").val();
+        var _endDate = $("#endDt").val();
+        var url = "@Url.Action("Index")" + "?startDate=" + _startDate + "&endDate=" + _endDate ;
+        window.location.href = url;
+    }
+</script>
+
+<h2>报表数据</h2>
+开始日期：<input type="text" id="stratDt" class="data_form" />
+
+结束日期：<input type="text" id="endDt" class="data_form" />
+<input type="button" class="btn-primary btn-default" value="检索" onclick="doSelect();" />
+
+<br />
+<br />
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr class="table_box_head">
+            <th>
+                操作时间
+            </th>
+            <th>
+                码头分类
+            </th>
+            <th>
+                收货时长
+            </th>
+            <th>
+                供应商名称
+            </th>
+            <th>
+                数量
+            </th>
+            <th>
+                是否有问题
+            </th>
+            <th>
+                问题描述
+            </th>
+            <th>
+                当班操作员
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            DateTime endtime = DateTime.Parse(item.EndTime.ToString());
+            DateTime startime = DateTime.Parse(item.StartTime.ToString());
+            var t = Math.Round(double.Parse((endtime - startime).TotalMinutes.ToString()), 2);
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.Wharfs)
+                </td>
+                <td>
+                    @t 分钟
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QueueUser.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsProblem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProblemDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Operation.TrueName)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
+
+</table>

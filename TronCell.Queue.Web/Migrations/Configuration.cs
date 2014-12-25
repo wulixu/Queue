@@ -59,8 +59,8 @@ namespace TronCell.Queue.Web.Migrations
 
             var receiveArea = new List<ReceiveArea>()
             {
-                new ReceiveArea() { AreaName = "A001窗口", Description = "A001", Category="All",CreateTime=DateTime.Now},
-                new ReceiveArea() { AreaName = "A002窗口", Description = "A002", Category="All",CreateTime=DateTime.Now}
+                new ReceiveArea() { AreaName = "A001窗口", Description = "A001", Category="All",CreateTime=DateTime.Now,AreaState=AreaState.IsFree,Wharfs=Wharfs.电子类码头},
+                new ReceiveArea() { AreaName = "A002窗口", Description = "A002", Category="All",CreateTime=DateTime.Now,AreaState=AreaState.IsFree,Wharfs=Wharfs.五金类码头}
             };
             receiveArea.ForEach(area => context.ReceiveArea.Add(area));
             context.SaveChanges();

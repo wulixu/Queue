@@ -53,6 +53,7 @@ namespace TronCell.Queue.Web.Models
     public class RegisterViewModel
     {
         [Display(Name="用户名")]
+        [Required(ErrorMessage = "用户名不能为空")]
         public string UserName { get; set; }
         [Display(Name="真实姓名")]
         public string TrueName { get; set; }
@@ -68,7 +69,7 @@ namespace TronCell.Queue.Web.Models
         [Display(Name="车牌号")]
         public string CarNum { get; set; }
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "{0} 长度必须大于 {2}个字符.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
         public string Password { get; set; }

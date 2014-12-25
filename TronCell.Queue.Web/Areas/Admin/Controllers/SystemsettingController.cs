@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace TronCell.Queue.Web.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class SystemsettingController : Controller
     {
         //

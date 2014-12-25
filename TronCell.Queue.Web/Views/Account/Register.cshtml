@@ -10,49 +10,49 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(m => m.UserName, new { @class = "col-md-1 control-label" })
-                <div class="col-md-6">
+                @Html.LabelFor(m => m.UserName, new { @class = "col-md-1 control-label" })<a style="color:red;text-align:right">*</a> 
+                <div class="col-md-3">
                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.TrueName, new { @class = "col-md-1 control-label" })
-                <div class="col-md-6">
+                @Html.LabelFor(m => m.TrueName, new { @class = "col-md-1 control-label" })<a style="color:red;text-align:right">*</a> 
+                <div class="col-md-3">
                     @Html.TextBoxFor(m => m.TrueName, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-1 control-label" })
-                <div class="col-md-6">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-1 control-label" })<a style="color:red;text-align:right">*</a> 
+                <div class="col-md-3">
                     @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.IDCard, new { @class = "col-md-1 control-label" })
-                <div class="col-md-6">
+                @Html.LabelFor(m => m.IDCard, new { @class = "col-md-1 control-label" })<a style="color:red;text-align:right">*</a> 
+                <div class="col-md-3">
                     @Html.TextBoxFor(m => m.IDCard, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.CompanyName, new { @class = "col-md-1 control-label" })
-                <div class="col-md-6">
+                <div class="col-md-3">
                     @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(m => m.CarNum, new { @class = "col-md-1 control-label" })
-                <div class="col-md-6">
+                <div class="col-md-3">
                     @Html.TextBoxFor(m => m.CarNum, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.Password, new { @class = "col-md-1 control-label label_left" })
-                <div class="col-md-6">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-1 control-label label_left" })<a style="color:red;text-align:right">*</a> 
+                <div class="col-md-3">
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-1 col-md-6">
+                <div class="col-md-offset-1 col-md-3">
                     <input type="submit" class="btn btn-primary btn-block" value="确认登记" />
                 </div>
             </div>

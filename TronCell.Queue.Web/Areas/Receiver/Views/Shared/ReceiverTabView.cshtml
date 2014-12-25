@@ -5,7 +5,9 @@
         //    var index = $(".main_menu ul li").index(this);
         //$(this).addClass("hover").siblings().removeClass("hover");
         //$(".showId").eq(index).show().siblings().hide();
-
+        $("#QueueTab").click(function () {
+            window.location.href = "/Manager/QueueCall/index";
+        });
         $("#ReceiverTab").click(function () {
             window.location.href = "/Receiver/ChoiceArea/index";
         });
@@ -19,6 +21,7 @@
 <div class="inner_table_head">
     <ul>
         <li id="ReceiverTab">收料员收货</li>
+        <li id="QueueTab">排队信息</li>
         <li id="HistoryTab">收货历史</li>
     </ul>
 </div>

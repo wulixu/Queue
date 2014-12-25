@@ -13,24 +13,24 @@ namespace TronCell.Queue.Web.API
 {
     public class QueueNumController : BaseAPIController
     {
-
-        //http://localhost:13352/api/QueueNum?numberStr=320324199006140674
+        /// http://localhost:13352/api/QueueNum?numberStr=320324199006140674&AreaStr=1
         /// <summary>
         /// 获取排队号码
         /// </summary>
-        /// <param name="queueUserInfo"></param>
+        /// <param name="NumberStr">身份证号码</param>
+        /// <param name="AreaStr">所选区域 1:五金类码头  2:电子类码头</param>
         /// <returns>返回排队号和信息
         /// eg：0002,前面还有1个用户等待排队,140673,张三
         /// 返回空,则有异常或有错误信息返回"error:XXX"
         /// </returns>
-        public string GetQueueuNum(string NumberStr)
+        public string GetQueueuNum(string NumberStr,string AreaStr)
         {
             try
             {
                 ApplicationDbContext db = new ApplicationDbContext();
                 DateTime today = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
                 DateTime tomorrow = today.AddDays(1);
-                List<ApplicationUser> reservations = db.Users.Where(p => (p.IDCard == NumberStr || p.PhoneNumber == NumberStr) && p.Deleted == false).ToList();
+                List<ApplicationUser> reservations = db.Users.Where(p => p.IDCard == NumberStr && p.UserName == NumberStr && p.Deleted == false).ToList();
                 var userManager= new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 
                 #region 判断当前最小号码
@@ -42,22 +42,31 @@ namespace TronCell.Queue.Web.API
                 {
                     return "error:用户不是送货人员,不能取号";
                 }
-                var minQueueNum = (from s in db.Queues
-                                   where s.CreateTime >= today && s.CreateTime < tomorrow && s.Deleted == false && s.State == ProcessStatus.GotQueueNumber && s.State != ProcessStatus.Processed && s.State != ProcessStatus.LazyProcess && s.State != ProcessStatus.NoQueueNumber && s.State != ProcessStatus.Processing
-                                   select s.QueueNum).Min();
 
-                int min;
-                if (string.IsNullOrEmpty(minQueueNum))
-                {
-                    min = 1;
-                }
-                else
-                {
-                    min = int.Parse(minQueueNum);
-                }
+                //&& s.State != ProcessStatus.Processed && s.State != ProcessStatus.LazyProcess && s.State != ProcessStatus.NoQueueNumber && s.State != ProcessStatus.Processing
+                //var minQueueNum = (from s in db.Queues
+                //                   where s.CreateTime >= today && s.CreateTime < tomorrow && s.Deleted == false && (s.State == ProcessStatus.GotQueueNumber || s.State == ProcessStatus.Processing)
+                //                   select s.QueueNum).Min();
+
+                //var _minQueueNum = (from s in db.Queues
+                //                    where s.CreateTime >= today && s.CreateTime < tomorrow && s.Deleted == false && (s.State == ProcessStatus.Processed || s.State == ProcessStatus.LazyProcess)
+                //                    select s.QueueNum).Max();
+                //int min;
+                //if (string.IsNullOrEmpty(minQueueNum))
+                //{
+                //    if (string.IsNullOrEmpty(_minQueueNum)) min = 1;
+                //    else min = int.Parse(_minQueueNum) + 1;
+                //}
+                //else
+                //{
+                //    min = int.Parse(minQueueNum);
+                //}
                 #endregion
                 string reser = reservations[0].Id;
-                List<QueueCall> callList = db.Queues.Where(t => t.CreateTime >= today && t.CreateTime < tomorrow && t.Deleted == false && t.QueueUser.Id == reser && (t.State == ProcessStatus.GotQueueNumber||t.State==ProcessStatus.Processing)).ToList();
+                var wharfs = Wharfs.五金类码头;
+                if (AreaStr == "1") wharfs = Wharfs.五金类码头;
+                else if (AreaStr == "2") wharfs = Wharfs.电子类码头;
+                List<QueueCall> callList = db.Queues.Where(t => t.CreateTime >= today && t.CreateTime < tomorrow && t.Deleted == false && t.QueueUser.Id == reser && (t.State == ProcessStatus.GotQueueNumber || t.State == ProcessStatus.Processing) && t.Wharfs == wharfs).ToList();
                 //&&(t.State == ProcessStatus.NoQueueNumber || t.State == ProcessStatus.Processing)&& (t.State == ProcessStatus.NoQueueNumber||t.State==ProcessStatus.Processing)
                 QueueCall call;
                 var result = "";
@@ -92,10 +101,15 @@ namespace TronCell.Queue.Web.API
                     queueEntiy.Priority = PriorityStatus.General;
                     queueEntiy.State = ProcessStatus.GotQueueNumber;
                     queueEntiy.QueueNum = result;
+                    queueEntiy.IsProblem = false;
+                    queueEntiy.Wharfs = wharfs;
+
                     db.Entry(queueEntiy).State = System.Data.Entity.EntityState.Added;
                     db.SaveChanges();
                 }
-                string numCount = (queue - min).ToString();
+
+                //string numCount = (queue - min).ToString();
+                string numCount = (db.Queues.Where(t => t.CreateTime >= today && t.CreateTime < tomorrow && t.Deleted == false && (t.State == ProcessStatus.GotQueueNumber || t.State == ProcessStatus.Processing)).ToList().Count - 1).ToString(); ;
                 string trueName = reservations[0].TrueName;
                 var passCode = reservations[0].IDCard.Substring(reservations[0].IDCard.Length - 8,7).ToString() + result;
                 result = result + "," + "前面还有" + numCount + "个用户排队等待," + passCode + "," + trueName;

@@ -1,17 +1,20 @@
 ﻿@using Webdiyer.WebControls.Mvc;
+@using TronCell.Queue.Web.Models;
 @model PagedList<TronCell.Queue.Web.Models.ApplicationUser>
 @{
     ViewBag.Title = "用户管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.CurrentTab = "UserTab";
+    var idmanager= new IdentityManager();
 }
 <div class="row">
     @Html.Partial("AdminTabView")
     <div class="col-md-2" style="float: right; margin: 5px 0px">
         @Html.ActionLink("添加新用户", "Create", null, new { @class = "btn btn-primary btn-block" })
     </div>
-    <div class="table-responsive">
-        <table class="table table-bordered  table-striped table-hover">
+    <h2>用户管理</h2>
+
+    <table class="table table-bordered  table-striped table-hover">
             <thead>
                 <tr class="table_box_head">
                     <th>
@@ -19,6 +22,9 @@
                     </th>
                     <th>
                         真实姓名
+                    </th>
+                    <th>
+                        角色
                     </th>
                     <th>
                         手机号码
@@ -44,8 +50,28 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.UserName)
                         </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.TrueName)
+                        </td>
+                        <td>
+                            @idmanager.UserRoleString(item.Id)
+                            @*@if (idmanager.UserRoleString(item.Id) == "Admin") {
+                                <label>管理员</label>
+                            }
+                            @if (idmanager.UserRoleString(item.Id) == "Supplier")
+                            {
+                                <label>送货人员</label>
+                            }
+                            @if (idmanager.UserRoleString(item.Id) == "Manager")
+                            {
+                                <label>经理</label>
+                            }
+                            @if (idmanager.UserRoleString(item.Id) == "Receiver")
+                            {
+                                <label>收料人员</label>
+                            }*@
+                            @*@Html.DisplayFor(modelIten => item.Roles)*@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -71,7 +97,6 @@
     </div>
         @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
 
-    </div>
 <script type="text/javascript">
     function doSuccessDelete()
     {

@@ -4,13 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.CurrentTab = "QueueTab";
 }
-@Html.Partial("ManagerTabView")
-<h3>排队管理</h3>
+@if (User.IsInRole("Manager"))
+{
+    @Html.Partial("ManagerTabView")
+}
+else if (User.IsInRole("Receiver"))
+{
+    @Html.Partial("~/areas/receiver/views/shared/receivertabview.cshtml")
+}
+<h2>排队管理</h2>
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr class="table_box_head">
             <th>
                 排队号码
+            </th>
+            <th>
+                送货码头
             </th>
             <th>
                 供应商手机号
@@ -25,14 +35,14 @@
                 送货人
             </th>
             <th>
-                当前状态
-            </th>
-            <th>
                 创建时间
             </th>
-            <th>
+            @if (User.IsInRole("Manager"))
+            {
+                <th>
                 操作
-            </th>
+                </th>
+            }
 
         </tr>
     </thead>
@@ -45,6 +55,9 @@
                     @Html.DisplayFor(modelItem => item.QueueNum)
                 </td>
                 <td>
+                    @Html.DisplayFor(moedeItem=>item.Wharfs)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.QueueUser.PhoneNumber)
                 </td>
                 <td>
@@ -54,17 +67,17 @@
                     @Html.DisplayFor(modelItem => item.QueueUser.CarNum)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.QueueUser.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.State)
+                    @Html.DisplayFor(modelItem => item.QueueUser.TrueName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreateTime)
                 </td>
+                @if (User.IsInRole("Manager"))
+                {
                 <td>
                     @Html.ActionLink("插队", "JumpQueue", new { id = item.QueueCallId })
                 </td>
+                }
             </tr>
         }
     </tbody>

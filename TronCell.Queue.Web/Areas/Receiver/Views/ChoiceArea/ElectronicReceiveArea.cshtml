@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TronCell.Queue.Web.Models.QueueCall>
+@{
+    ViewBag.Title = "选择收料区域";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.CurrentTab = "ReceiverTab";
+}
+@Html.Partial("ReceiverTabView")
+<h2>
+    当前所在的收料区域为：电子类收料区
+</h2>
+<div class="col-md-2" style="float: right; margin: 5px 0px">
+    @Html.ActionLink("叫号", "ElectronicReceiveArea", new { callNum = "callNum" }, new { @class = "btn btn-primary btn-block" })
+</div>
+<br />
+<br />
+<br />
+@if (Model != null)
+{
+    <div class="table-responsive">
+        <table class="table table-bordered  table-striped table-hover">
+            <thead>
+                <tr class="table_box_head">
+                    <th>
+                        排队号码
+                    </th>
+                    <th>
+                        窗口号
+                    </th>
+                    <th>
+                        进入收料
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QueueNum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReceiveArea.AreaName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("进入收取", "Edit", new { id = item.QueueCallId }, new { @class = "btn btn-primary btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>}

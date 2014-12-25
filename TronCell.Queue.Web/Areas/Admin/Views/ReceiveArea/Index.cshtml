@@ -1,30 +1,51 @@
 ﻿@*@model IEnumerable<TronCell.Queue.Web.Models.ReceiveArea>*@
 @using Webdiyer.WebControls.Mvc;
-@model PagedList<TronCell.Queue.Web.Models.ReceiveArea>
+@using TronCell.Queue.Web.Models;
+@*@model PagedList<TronCell.Queue.Web.Models.ReceiveArea>*@
+@model PagedList<TronCell.Queue.Web.Models.QueueCall>
 @{
     ViewBag.Title = "窗口管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.CurrentTab = "WindowTab";
 }
-@Html.Partial("AdminTabView")
+@if(User.IsInRole("Admin")){
+    @Html.Partial("AdminTabView")
+}
+else if (User.IsInRole("Manager"))
+{ 
+    @Html.Partial("~/areas/manager/views/shared/managertabview.cshtml")
+}
 
 <div class="col-md-2" style="float: right;margin: 5px 0px">
+@if (User.IsInRole("Admin"))
+{
     @Html.ActionLink("添加新窗口", "Create", null, new { @class = "btn btn-primary btn-block" })
+}
 </div>
+<h2>窗口管理</h2>
 <table class="table table-bordered  table-striped table-hover">
     <thead>
         <tr class="table_box_head">
             <th>
-                @Html.DisplayNameFor(model => model.AreaName)
+                @Html.DisplayNameFor(model => model.ReceiveArea.AreaName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.ReceiveArea.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                @Html.DisplayNameFor(model => model.ReceiveArea.Category)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateTime)
+                @Html.DisplayNameFor(model => model.ReceiveArea.CreateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveArea.Wharfs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiveArea.AreaState)
+            </th>
+            <th>
+                窗口使用情况
             </th>
             <th>
                 操作
@@ -36,21 +57,49 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AreaName)
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.AreaName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Category)
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.Category)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CreateTime)
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.CreateTime)
                 </td>
                 <td>
-                    @Html.ActionLink("编辑", "Edit", new { id = item.ReceiveAreaId },new { @class = "btn-primary btn-sm"}) &nbsp;|&nbsp;
-                    @*@Html.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId }, new { @class = "btn btn-danger", @role = "button" })*@
-                    @Ajax.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId }, new AjaxOptions { HttpMethod = "POST", Confirm = "确定要删除该用户信息吗?", OnSuccess = "doSuccessDelete();" }, new { @class = "btn-danger btn-sm" })
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.Wharfs)
+                </td>
+                <td>
+                    @if (item.ReceiveArea.AreaState == AreaState.IsFree)
+                    {
+                        <label>空闲中</label>
+                    }
+                    else
+                    {
+                        <label>使用中</label>
+                    }
+                </td>
+                <td>
+                    @if (item.ReceiveArea.AreaState == AreaState.IsFree)
+                    {
+                        <label>当前窗口无人操作</label>
+                    }
+                    else
+                    {
+                        <label>收料员:@item.Operation.TrueName -- 送货人:@item.QueueUser.TrueName</label>
+                    }
+                </td>
+            
+                <td>
+                    @Html.ActionLink("编辑", "Edit", new { id = item.ReceiveArea.ReceiveAreaId },new { @class = "btn-primary btn-sm"})
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a> &nbsp;|&nbsp;</a>
+                        @*@Html.ActionLink("删除", "Delete", new { id = item.ReceiveAreaId }, new { @class = "btn btn-danger", @role = "button" })*@
+                        @Ajax.ActionLink("删除", "Delete", new { id = item.ReceiveArea.ReceiveAreaId }, new AjaxOptions { HttpMethod = "POST", Confirm = "确定要删除该信息吗?", OnSuccess = "doSuccessDelete();" }, new { @class = "btn-danger btn-sm" })
+                    }
                 </td>
             </tr>
         }

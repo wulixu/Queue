@@ -37,7 +37,7 @@
                 身份证号码
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IDCard, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DisplayFor(model => model.IDCard, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.IDCard)
             </div>
         </div>
@@ -64,7 +64,8 @@
                 密码
             </div>
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.PasswordHash, new {  @class = "form-control" })
+                @Html.EditorFor(model => model.PasswordHash , new { htmlAttributes =  new {  @class = "form-control" }})
+                <input type="hidden" id="passwordValue" name="passwordValue" value="@Model.PasswordHash" />
                 @Html.ValidationMessageFor(model => model.PasswordHash)
             </div>
         </div>

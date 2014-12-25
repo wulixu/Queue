@@ -325,6 +325,13 @@ input.login_sub:hover{
 }
 .add_newuser{overflow:hidden;}
 .add_newuser a{display:block;width:108px;height:32px;color:#fff;background:#339cd2;line-height:32px;text-align:center;margin-top:20px;margin-bottom:20px;float:right;}
+.table {
+    text-align:center;
+}
+    .table th {
+        text-align:center;
+    }
+
 .table_box_head{background:#f3f3f3;border:solid 1px #dedede;border-top:solid 1px #b2b2b2;}
 .table_td{float:left;height:50px;font-size:14px;width:165px;line-height:50px;text-align:center;border-right:solid 1px #dedede;}
 .table_list{height:50px;border:solid 1px #dedede;border-top:none 0px;overflow:hidden;}

@@ -8,27 +8,76 @@
     ViewBag.CurrentTab = "HistoryTab";
 }
 @Html.Partial("ManagerTabView")
+
+<script src="~/scripts/jquery-2.1.1.js"></script>
+<script src="~/scripts/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#stratDt").datepicker({ dateFormat: "yy-mm-dd" });
+        $("#endDt").datepicker({ dateFormat: "yy-mm-dd" });
+    });
+
+    function doSelect() {
+        var _startDate = $("#stratDt").val();
+        var _endDate = $("#endDt").val();
+        var _records = $("#SelectRecords").val();
+        var url = "@Url.Action("Index")" + "?startDate=" + _startDate + "&endDate=" + _endDate + "&reState=" + _records;
+        window.location.href = url;
+    }
+
+    function DownloadCSV() {
+        var _startDate = $("#stratDt").val();
+        var _endDate = $("#endDt").val();
+        var _records = $("#SelectRecords").val();
+        var url = "@Url.Action("DownloadCSV")" + "?startDate=" + _startDate + "&endDate=" + _endDate + "&reState=" + _records;
+        window.location.href = url;
+    }
+
+</script>
 <h2>报表数据</h2>
+开始日期：<input type="text" id="stratDt" class="data_form" />
+
+结束日期：<input type="text" id="endDt" class="data_form" />
+<select id="SelectRecords">
+    <option value="0">全部记录</option>
+    <option value="1">正常收料</option>
+    <option value="2">问题收料</option>
+</select>
+<input type="button" class="btn-primary btn-default" value="检索" onclick="doSelect();" />
+<input type="button" class="btn-primary btn-default" value="下载详细" onclick="DownloadCSV();" />
+
+<br />
+<br />
+
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr class="table_box_head">
             <th>
-                取号单号
+                操作时间
             </th>
             <th>
-                收料人员
+                码头分类
             </th>
             <th>
-                创建时间
+                收货时长
             </th>
             <th>
-                开始收货时间
+                供应商名称
             </th>
             <th>
-                结束收货时间
+                数量
             </th>
             <th>
-                收料区域
+                是否有问题
+            </th>
+            <th>
+                问题描述
+            </th>
+            <th>
+                当班操作员
+            </th>
+            <th>
+                Action
             </th>
         </tr>
     </thead>
@@ -36,29 +85,126 @@
 
         @foreach (var item in Model)
         {
+            DateTime endtime = DateTime.Parse(item.EndTime.ToString());
+            DateTime startime = DateTime.Parse(item.StartTime.ToString());
+            var t = Math.Round(double.Parse((endtime - startime).TotalMinutes.ToString()), 2);
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QueueNum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Operation.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateTime)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StartTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EndTime)
+                    @Html.DisplayFor(modelItem => item.ReceiveArea.Wharfs)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ReceiveArea.AreaName)
+                    @t 分钟
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QueueUser.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsProblem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProblemDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Operation.TrueName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.QueueCallId }, new { @class = "btn-primary btn-sm" })
                 </td>
             </tr>
         }
     </tbody>
-
-    @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
-
 </table>
+@Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
+
+<br />
+<br />
+<hr />
+<h2>图形报表</h2>
+<br />
+<br />
+<script src="~/scripts/chart.js"></script>
+<div style="width:50%;float:left">
+    <h4>有问题物料所占比例饼图：</h4>
+    <canvas id="chart-area" width="400" height="400" />
+</div>
+<div style="width:50%;float:left">
+    <h4>各收料人员问题收料条形图：</h4>
+    <canvas id="canvas" height="300" width="400"></canvas></div>
+<script>
+
+    var pieData = [
+            {
+                value: @ViewBag.PieIsQuestion,
+                color: "#F7464A",
+                highlight: "#FF5A5E",
+                label: "有问题物料"
+            },
+                {
+                    value: @ViewBag.PieNotQuestion,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "无问题的物料"
+                }
+
+    ];
+
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        var myPie = new Chart(ctx).Pie(pieData,{
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+        });
+
+
+
+</script>
+<script>
+    var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+    var barChartData = {
+        labels: [@CombineWithWeek()],
+        //labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [
+            {
+                label: "男",
+                fillColor: "rgb(91, 155, 214)",
+                strokeColor: "rgb(91, 155, 214)",
+                pointColor: "rgb(238, 206, 194)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: [@ViewBag.BarIsQuestion]
+            },
+            {
+                label: "女",
+                fillColor: "rgb(255, 137, 54)",
+                strokeColor: "rgb(255, 137, 54)",
+                pointColor: "rgb(254, 65, 65)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: [@ViewBag.BarNotQuestion]
+            }
+        ]
+
+    }
+    var barctx = document.getElementById("canvas").getContext("2d");
+    var barChart = new Chart(barctx).Bar(barChartData, {
+        responsive: true,
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+    
+    });
+    console.log(barChart.generateLegend());
+</script>
+
+
+
+@helper CombineWithWeek()
+{
+
+    @Html.Raw(@ViewBag.BarUserName)
+}

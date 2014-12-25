@@ -1,6 +1,4 @@
-﻿@using Webdiyer.WebControls.Mvc;
-@model PagedList<TronCell.Queue.Web.Models.ReceiveArea>
-@{
+﻿@{
     ViewBag.Title = "选择收料区域";
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.CurrentTab = "ReceiverTab";
@@ -9,15 +7,13 @@
 <h2>
     选择当前你所在的收料区域
 </h2>
+
 <div class="table-responsive">
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr class="table_box_head">
                 <th>
-                    @Html.DisplayNameFor(model => model.AreaName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
+                    收料员所需进入的码头
                 </th>
                 <th>
                     操作
@@ -25,23 +21,74 @@
             </tr>
         </thead>
         <tbody>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AreaName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.ActionLink("进入", "Details", new { id = item.ReceiveAreaId, methodName = "firstQueue", queueCallId = 0 }, new { @class = "btn btn-primary btn-sm", @role = "button" })
-                    </td>
-                </tr>
-            }
+            <tr>
+                <td>
+                    五金类码头
+                </td>
+                <td>
+                    @Html.ActionLink("进入", "HardwareReceiveArea", new { @class = "btn-primary btn-sm", @role = "button" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    电子类码头
+                </td>
+                <td>
+                    @Html.ActionLink("进入", "ElectronicReceiveArea", new { @class = "btn-primary btn-sm", @role = "button" })
+                </td>
+            </tr>
         </tbody>
 
     </table>
 </div>
-@Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })
+
+
+
+
+@*@using Webdiyer.WebControls.Mvc;
+    @model PagedList<TronCell.Queue.Web.Models.ReceiveArea>
+    @{
+        ViewBag.Title = "选择收料区域";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.CurrentTab = "ReceiverTab";
+    }
+    @Html.Partial("ReceiverTabView")
+    <h2>
+        选择当前你所在的收料区域
+    </h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr class="table_box_head">
+                    <th>
+                        @Html.DisplayNameFor(model => model.AreaName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AreaName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("进入", "Details", new { id = item.ReceiveAreaId, methodName = "firstQueue", queueCallId = 0 }, new { @class = "btn btn-primary btn-sm", @role = "button" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    @Html.Pager(Model, new PagerOptions { PageIndexBoxType = PageIndexBoxType.DropDownList, ShowGoButton = false })*@

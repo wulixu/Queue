@@ -7,7 +7,7 @@
     ViewBag.CurrentTab = "ReceiverTab";
 }
 @Html.Partial("ReceiverTabView")
-<h2>收料操作,当前收料区域为 @Html.DisplayTextFor(model => model.ReceiveArea.AreaName) </h2>
+<h2>收料操作,当前收料区域为 @Html.DisplayTextFor(model => Model.ReceiveArea.AreaName) </h2>
 <hr />
 
 <h4>当前送货详细信息</h4>
@@ -42,7 +42,7 @@
                 送货人：
             </label>
             <label class="col-md-10 control-label">
-                @Html.DisplayTextFor(model => model.QueueUser.UserName)
+                @Html.DisplayTextFor(model => model.QueueUser.TrueName)
             </label>
         </div>
 

@@ -12,15 +12,32 @@ using Webdiyer.WebControls.Mvc;
 
 namespace TronCell.Queue.Web.Areas.Admin.Controllers
 {
-    [Authorize]
     public class ReceiveAreaController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [Authorize(Roles = "Admin, Manager")]
         // GET: /Admin/ReceiverArea/
         public async Task<ActionResult> Index(int pageIndex = 1)
         {
-            var model = db.ReceiveArea.AsQueryable().OrderBy(a => a.AreaName).ToPagedList(pageIndex, 10);
+            //var model = db.ReceiveArea.AsQueryable().OrderBy(a => a.AreaName).ToPagedList(pageIndex, 10);
+            List<QueueCall> queueuList = new List<QueueCall>();
+            var reAreaList = db.ReceiveArea.AsQueryable().ToList();
+            foreach (var item in reAreaList)
+            {
+                if(item.AreaState==AreaState.IsFree)
+                    queueuList.Add(new QueueCall() { ReceiveArea = item });
+                if (item.AreaState == AreaState.IsBusy)
+                {
+                    var queueEnt = db.Queues.Include(a => a.ReceiveArea).Where(a => a.ReceiveArea.ReceiveAreaId == item.ReceiveAreaId).FirstOrDefault();
+                    queueuList.Add(queueEnt);
+                }
+            }
+            var model = queueuList.ToPagedList(pageIndex, 10);
+
+            //var model = (from r in db.Queues
+            //             where r.ReceiveArea.AreaState==AreaState.IsBusy && r.State==TronCell.Queue.Web.Models.ProcessStatus.Processing
+            //             select r
+            //             ).OrderBy(a => a.ReceiveArea.AreaName).ToPagedList(pageIndex, 10);
             return View(model);
             //return View(await db.ReceiveArea.ToListAsync());
         }
@@ -40,10 +57,13 @@ namespace TronCell.Queue.Web.Areas.Admin.Controllers
             }
             return View(receivearea);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: /Admin/ReceiverArea/Create
         public ActionResult Create()
         {
+            //var statuses = from Wharfs s in Enum.GetValues(typeof(Wharfs))
+            //               select new { ID = s, Name = s.ToString() };
+            //ViewData["taskStatus"] = new SelectList(statuses, "ID", "Name");
             return View();
         }
 
@@ -52,11 +72,13 @@ namespace TronCell.Queue.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include="ReceiveAreaId,AreaName,Description,Category,CreateTime")] ReceiveArea receivearea)
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> Create([Bind(Include = "ReceiveAreaId,AreaName,Description,Category,CreateTime,Wharfs")] ReceiveArea receivearea)
         {
             if (ModelState.IsValid)
             {
                 receivearea.CreateTime = DateTime.Now;
+                receivearea.AreaState = AreaState.IsFree;
                 db.ReceiveArea.Add(receivearea);
 
                 await db.SaveChangesAsync();
@@ -67,6 +89,7 @@ namespace TronCell.Queue.Web.Areas.Admin.Controllers
         }
 
         // GET: /Admin/ReceiverArea/Edit/5
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +109,8 @@ namespace TronCell.Queue.Web.Areas.Admin.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include="ReceiveAreaId,AreaName,Description,Category,CreateTime")] ReceiveArea receivearea)
+        [Authorize(Roles = "Admin, Manager")]
+        public async Task<ActionResult> Edit([Bind(Include = "ReceiveAreaId,AreaName,Description,Category,CreateTime,Wharfs,AreaState")] ReceiveArea receivearea)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +123,7 @@ namespace TronCell.Queue.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             ReceiveArea receivearea = await db.ReceiveArea.FindAsync(id);

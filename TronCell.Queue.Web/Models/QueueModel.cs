@@ -71,6 +71,30 @@ namespace TronCell.Queue.Web.Models
         /// 是否删除
         /// </summary>
         public bool Deleted { get; set; }
+
+        /// <summary>
+        /// 收料区域所属码头
+        /// </summary>
+        [Display(Name = "所属码头")]
+        [Required]
+        public Wharfs Wharfs { get; set; }
+        /// <summary>
+        /// 送货数量
+        /// </summary>
+        [Display(Name="数量")]
+        public string ProductQuantity { get; set; }
+        /// <summary>
+        /// 是否是有问题的商品
+        /// </summary>
+        [Display(Name = "是否有问题")]
+        [Required]
+        public bool IsProblem { get; set; }
+
+        /// <summary>
+        /// 有问题的商品描述
+        /// </summary>
+        [Display(Name="问题描述")]
+        public string ProblemDescription { get; set; }
     }
 
     /// <summary>

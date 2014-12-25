@@ -10,13 +10,13 @@ using System.Web.Mvc;
 using TronCell.Queue.Web.Models;
 namespace TronCell.Queue.Web.Areas.Manager.Controllers
 {
-    [Authorize]
     public class QueueCallController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /Manager/QueueCall/
-        public ActionResult Index(int pageIndex=1)
+        [Authorize(Roles = "Manager, Receiver")]
+        public ActionResult Index(int pageIndex = 1)
         {
             DateTime today = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
             DateTime tomorrow = today.AddDays(1);
@@ -26,6 +26,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         }
 
         // GET: /Manager/QueueCall/Details/5
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,6 +42,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         }
 
         // GET: /Manager/QueueCall/Create
+        [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
             ViewBag.OperationId = new SelectList(db.Users, "Id", "IDCard");
@@ -54,6 +56,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> Create([Bind(Include="QueueCallId,QueueNum,State,Priority,CreateTime,StartTime,EndTime,QueueUserId,OperationId,ReceiveAreaId,Deleted")] QueueCall queuecall)
         {
             if (ModelState.IsValid)
@@ -73,6 +76,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> JumpQueue(int id)
         {
             try
@@ -92,6 +96,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
             }
         }
         // GET: /Manager/QueueCall/Edit/5
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -114,6 +119,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> Edit([Bind(Include="QueueCallId,QueueNum,State,Priority,CreateTime,StartTime,EndTime,QueueUserId,OperationId,ReceiveAreaId,Deleted")] QueueCall queuecall)
         {
             if (ModelState.IsValid)
@@ -129,6 +135,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         }
 
         // GET: /Manager/QueueCall/Delete/5
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,6 +153,7 @@ namespace TronCell.Queue.Web.Areas.Manager.Controllers
         // POST: /Manager/QueueCall/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             QueueCall queuecall = await db.Queues.FindAsync(id);

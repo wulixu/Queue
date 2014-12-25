@@ -33,6 +33,44 @@ namespace TronCell.Queue.Web.Models
         /// </summary>
         [Display(Name="创建时间")]
         public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// 收料区域所属码头
+        /// </summary>
+        [Display(Name="所属码头")]
+        [Required]
+        public Wharfs Wharfs { get; set; }
+        /// <summary>
+        /// 收料区码头状态
+        /// </summary>
+        [Display(Name = "码头当前状态")]
+        public AreaState AreaState { get; set; }
 
+    }
+    /// <summary>
+    /// 码头选择
+    /// </summary>
+    public enum Wharfs
+    {
+        /// <summary>
+        /// 五金类码头
+        /// </summary>
+        [Display(Name = "五金类码头")]
+        五金类码头 = 1,
+        /// <summary>
+        /// 电子类码头
+        /// </summary>
+        [Display(Name = "电子类码头")]
+        电子类码头
+    }
+
+    /// <summary>
+    /// 码头状态
+    /// </summary>
+    public enum AreaState
+    {
+        [Display(Name = "忙碌的 ")]
+        IsBusy = 1,
+        [Display(Name = "空闲的")]
+        IsFree
     }
 }

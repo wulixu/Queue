@@ -109,6 +109,8 @@ namespace TronCell.Queue.Web.Models
                 .HasForeignKey(u => u.ReceiveAreaId).WillCascadeOnDelete(false);
 
         }
+
+        //public System.Data.Entity.DbSet<TronCell.Queue.Web.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 
     public class IdentityManager
@@ -144,6 +146,15 @@ namespace TronCell.Queue.Web.Models
         {
             var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
             return rm.Roles.ToList();
+        }
+        public string UserRoleString(string userId) 
+        {
+            var um = new UserManager<ApplicationUser>(
+            new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var role = um.GetRoles(userId).FirstOrDefault().ToString();
+            //var rm = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+            //var sss = rm.FindByIdAsync(roleId);
+            return role;
         }
     }
 }
